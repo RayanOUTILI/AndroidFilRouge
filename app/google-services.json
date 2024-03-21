@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "985018177292",
+    "project_id": "proftracker-795a4",
+    "storage_bucket": "proftracker-795a4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:985018177292:android:1a5f03538c665c74c41b29",
+        "android_client_info": {
+          "package_name": "edu.iut.proftracker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYf7EuMC-pt6rh_lqWEIiE6lPvuEdZNUQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
