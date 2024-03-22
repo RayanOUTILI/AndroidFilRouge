@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView textView = findViewById(R.id.textView);
-
         FirebaseConnection firebaseConnection = new FirebaseConnection();
         String professors = firebaseConnection.select("professors", "name", "John Doe");
 

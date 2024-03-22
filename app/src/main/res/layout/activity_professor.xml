@@ -4,25 +4,5 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Première section -->
-    <ImageView
-        android:id="@+id/imagePopularTeacher1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/professeur1"
-        android:scaleType="centerCrop"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="80dp"
-        />
-
-    <TextView
-        android:id="@+id/popularTeachersLabel1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Professeurs Populaires"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/imagePopularTeacher1"
-        android:layout_marginTop="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
