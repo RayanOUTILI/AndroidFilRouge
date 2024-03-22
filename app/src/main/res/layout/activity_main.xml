@@ -1,108 +1,150 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".views.activitites.MainActivity">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/logo" />
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="20dp"
+            android:contentDescription="@string/logo"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/prof_tracker"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="30sp" />
-
-    <ImageView
-        android:id="@+id/profile"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_margin="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/profile_picture"/>
-
-    <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_margin="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title" />
-
-    <!-- Label "Filtre" -->
-    <TextView
-        android:id="@+id/filterLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Filtre : "
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchView"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="8dp" />
-
-    <!-- Scroll View Horizontale -->
-    <HorizontalScrollView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/filterLabel">
-
-        <!-- Boutons pour filtrer par matière -->
-        <LinearLayout
+        <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/subjectFilterLayout"
-            android:orientation="horizontal">
+            android:text="@string/prof_tracker"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/logo" />
 
-            <Button
-                android:id="@+id/buttonFrancais"
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="20dp"
+            android:contentDescription="@string/profile_picture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        app:layout_constraintStart_toEndOf="@+id/searchView"
+        app:layout_constraintTop_toTopOf="@+id/searchView"
+        android:text="@string/arrow" />
+
+        <!-- Label "Filtre" -->
+        <TextView
+            android:id="@+id/filterLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Filtre : "
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+
+        <!-- Scroll View Horizontale -->
+        <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/filterLabel">
+
+            <!-- Boutons pour filtrer par matière -->
+            <LinearLayout
+                android:id="@+id/subjectFilterLayout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Français"
-                android:layout_marginStart="8dp"/>
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/buttonMathematiques"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mathématiques"
-                android:layout_marginStart="8dp"/>
+                <Button
+                    android:id="@+id/buttonFrancais"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Français" />
 
-            <Button
-                android:id="@+id/buttonHistoire"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Histoire"
-                android:layout_marginStart="8dp"/>
+                <Button
+                    android:id="@+id/buttonMathematiques"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Mathématiques" />
 
-            <Button
-                android:id="@+id/buttonInformatique"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Informatique"
-                android:layout_marginStart="8dp"/>
-        </LinearLayout>
-    </HorizontalScrollView>
+                <Button
+                    android:id="@+id/buttonHistoire"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Histoire" />
+
+                <Button
+                    android:id="@+id/buttonInformatique"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Informatique" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="275dp"
+            android:id="@+id/listeViewRecherche"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/horizontalScrollView">
+        </ListView>
+
+
+        <TextView
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ProfesseurPopulaireTitle"
+            app:layout_constraintStart_toStartOf="@id/listeViewRecherche"
+            app:layout_constraintTop_toBottomOf="@id/listeViewRecherche"
+            android:text="@string/professeur_populaire"
+            />
+
+        <ListView
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ProfesseurPopulaireTitle"
+            android:orientation="horizontal"
+            android:layout_marginTop="15dp"
+            />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_menu"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
