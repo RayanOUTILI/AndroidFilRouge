@@ -2,5 +2,12 @@
     <string name="app_name">ProfTracker</string>
     <string name="prof_tracker">Prof Tracker</string>
     <string name="logo">logo</string>
-    <string name="profile_picture">test</string>
+    <string name="profile_picture">profile_picture</string>
+    <string name="professeur_populaire">Professeur Populaire</string>
+    <string name="arrow"><![CDATA[->]]></string>
+    <string name="position">Position</string>
+    <string name="contacter">Contacter</string>
+    <string name="exemple1">3.5 km - Nice</string>
+    <string name="exemple2">Ekko Lier</string>
+    <string name="exemple3">Jeune prodige des rues malfamées de Zaun, Ekko manipule le temps.</string>
 </resources>
