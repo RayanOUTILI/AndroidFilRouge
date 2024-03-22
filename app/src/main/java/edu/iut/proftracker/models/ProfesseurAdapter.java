@@ -9,6 +9,7 @@ import java.util.List;
 
 import edu.iut.proftracker.R;
 import edu.iut.proftracker.controllers.Clickable;
+import edu.iut.proftracker.models.Professeur;
 import edu.iut.proftracker.views.activitites.MainActivity;
 
 public class ProfesseurAdapter extends BaseAdapter {

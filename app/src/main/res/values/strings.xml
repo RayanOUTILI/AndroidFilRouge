@@ -2,7 +2,6 @@
     <string name="app_name">ProfTracker</string>
     <string name="prof_tracker">Prof Tracker</string>
     <string name="logo">logo</string>
-    <string name="profile_picture">test</string>
     <string name="prix">Prix</string>
     <string name="profile_picture">profile_picture</string>
     <string name="professeur_populaire">Professeur Populaire</string>
@@ -12,4 +11,11 @@
     <string name="exemple1">3.5 km - Nice</string>
     <string name="exemple2">Ekko Lier</string>
     <string name="exemple3">Jeune prodige des rues malfamées de Zaun, Ekko manipule le temps.</string>
+    <string name="forgottenPassword">Mot de passe oublié ?</string>
+    <string name="noAccount">Pas de compte ? Créer un compte</string>
+    <string name="havingAccount">Déjà un compte ? Se connecter</string>
+    <string name="login">Se connecter</string>
+    <string name="register">Créer un compte</string>
+    <string name="mail">Adresse email</string>
+    <string name="password">Mot de passe</string>
 </resources>
