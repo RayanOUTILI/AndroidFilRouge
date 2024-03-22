@@ -30,10 +30,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
         System.out.println(professors);
 
-        /*
-        String url = "http://edu.info06.net/onepiece/characters.json";
-        new HttpAsyncGet<>(url, Character.class, this, new ProgressDialog(MainActivity.this) );
-         */
+        String url = "https://rayanoutili.github.io/ProfTrackerJson/professeurs.json";
+        new HttpAsyncGet<>(url, Professeur.class, this, new ProgressDialog(MainActivity.this) );
+
     }
 
     @Override
