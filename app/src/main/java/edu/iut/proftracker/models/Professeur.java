@@ -1,6 +1,11 @@
 package edu.iut.proftracker.models;
 
-public class Professeur {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Professeur implements Parcelable {
 
     private String nom;
     private String matiere;
@@ -10,6 +15,14 @@ public class Professeur {
 
     public Professeur() {
         super();
+    }
+
+    public Professeur(Parcel in){
+        this.nom = in.readString();
+        this.matiere = in.readString();
+        this.prix = in.readFloat();
+        this.note = in.readFloat();
+        this.image = in.readString();
     }
 
     public String getNom() {
@@ -51,4 +64,34 @@ public class Professeur {
     public void setImage(String image) {
         this.image = image;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(this.nom);
+        dest.writeString(this.matiere);
+        dest.writeFloat(this.prix);
+        dest.writeFloat(this.note);
+        dest.writeString(this.image);
+    }
+
+    public static final Parcelable.Creator<Professeur> CREATOR = new Parcelable.Creator<Professeur>() {
+        @Override
+        public Professeur createFromParcel(Parcel source) {
+            return new Professeur(source);
+        }
+        @Override
+        public Professeur[] newArray(int size)
+        {
+            return new Professeur[size];
+        }
+    };
+    public static Parcelable.Creator<Professeur> getCreator() {
+        return CREATOR;
+    }
 }
+

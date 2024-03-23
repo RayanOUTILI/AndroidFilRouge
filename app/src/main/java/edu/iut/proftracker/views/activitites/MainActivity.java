@@ -38,13 +38,11 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
         this.firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser == null) {
             this.loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(loginIntent);
         }
-        */
 
         TextView textView = findViewById(R.id.title);
         Button fr = findViewById(R.id.buttonFrancais);
@@ -71,8 +69,22 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     }
 
     @Override
-    public void onClicItem(int itemIndex) {
+    public void onClicItem(int Index) {
+        int itemIndex = findIndexInList(Index);
         Log.d(TAG, String.valueOf(itemIndex));
+        Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+        intent.putExtra(getString(R.string.key), professeurList.get(itemIndex));
+        startActivity(intent);
+    }
+
+    private int findIndexInList(int index) {
+        Professeur characterToFind = professeurList.get(index);
+        for (int i = 0; i < professeurList.size(); i++) {
+            if (professeurList.get(i).equals(characterToFind)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
