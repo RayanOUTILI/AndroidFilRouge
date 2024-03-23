@@ -28,8 +28,8 @@ public class Professeur {
         this.matiere = matiere;
     }
 
-    public float getPrix() {
-        return prix;
+    public String getPrix() {
+        return prix+ " €/h";
     }
 
     public void setPrix(float prix) {

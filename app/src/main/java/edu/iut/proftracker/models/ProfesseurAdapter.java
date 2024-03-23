@@ -53,7 +53,7 @@ public class ProfesseurAdapter extends BaseAdapter {
         name.setText(items.get(position).getNom());
         //picture.setImageResource(items.get(position).getPicture());
         ratingBar.setRating(items.get(position).getNote());
-        prix.setText(String.valueOf(items.get(position).getPrix()));
+        prix.setText(items.get(position).getPrix());
         matiere.setText(items.get(position).getMatiere());
 
         //(4) écouteur sur chaque élément de l'adapter

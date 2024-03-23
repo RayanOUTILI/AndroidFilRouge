@@ -26,7 +26,7 @@ import edu.iut.proftracker.models.Professeur;
 import edu.iut.proftracker.models.ProfesseurAdapter;
 
 public class MainActivity extends AppCompatActivity implements PostExecuteActivity<Professeur>, Clickable {
-    private final String TAG = "fred "+getClass().getSimpleName();
+    private final String TAG = "AAAAAAAAAAAAAAAAAAAAAA";
     private static final List<Professeur> professeurList = new ArrayList<>(); //the complete list
     private final List<Professeur> displayedprofesseur = new ArrayList<>(); //the displayed list
     private ProfesseurAdapter adapter;
@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
     @Override
     public void onClicItem(int itemIndex) {
-
+        Log.d(TAG, String.valueOf(itemIndex));
     }
 
     @Override
