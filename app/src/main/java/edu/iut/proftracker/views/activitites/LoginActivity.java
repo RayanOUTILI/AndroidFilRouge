@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,13 +38,29 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         this.firebaseAuth = FirebaseAuth.getInstance();
-
+    
         Button loginButton = findViewById(R.id.loginButton);
         TextInputEditText emailTextField = findViewById(R.id.emailInputField);
         TextInputEditText passwordTextField = findViewById(R.id.passwordInputField);
 
         TextView forgotPasswordLink = findViewById(R.id.forgottenPassword);
         TextView registerLink = findViewById(R.id.noAccount);
+
+        forgotPasswordLink.setOnClickListener(
+                click -> {
+                    this.firebaseAuth.sendPasswordResetEmail(emailTextField.getText().toString())
+                            .addOnCompleteListener(
+                                    task -> {
+                                        if(task.isSuccessful()) {
+                                            Toast.makeText(getApplicationContext(), "Un mail de réinitialisation de mot de passe vous a été envoyé", Toast.LENGTH_LONG).show();
+                                        }
+                                        else {
+                                            Toast.makeText(getApplicationContext(), "Une erreur est survenue lors de l'envoi du mail de réinitialisation de mot de passe", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                            );
+                }
+        );
 
         registerLink.setOnClickListener(
                 click -> {
