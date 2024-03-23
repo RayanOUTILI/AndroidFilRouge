@@ -43,8 +43,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         if(firebaseUser == null) {
             this.loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(loginIntent);
-        }
-        */
+        }*/
 
         TextView textView = findViewById(R.id.title);
         Button fr = findViewById(R.id.buttonFrancais);

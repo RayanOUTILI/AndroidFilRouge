@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/profilepicture"
             android:contentDescription="@string/profile_picture"
-            android:background="@color/cardview_dark_background"
+            android:background="@drawable/rounded_corners_bottom"
             />
 
         <ImageView
