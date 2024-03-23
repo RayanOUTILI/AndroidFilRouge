@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -33,24 +35,30 @@ public class ProfesseurAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View layoutItem = null;
-        /*
+        View layoutItem;
+
         //(1) : Réutilisation des layouts (lorsque c'est possible)
         layoutItem = (convertView == null
-                ? mInflater.inflate(R.layout.studient_layout, parent, false)
+                ? mInflater.inflate(R.layout.professor_layout, parent, false)
                 : convertView);
+
         //(2) : Récupération des éléments
-        TextView name = layoutItem.findViewById(R.id.name);
-        ImageView picture = layoutItem.findViewById(R.id.picture);
-        RatingBar ratingBar = layoutItem.findViewById(R.id.rank);
+        TextView name = layoutItem.findViewById(R.id.profName);
+        //ImageView picture = layoutItem.findViewById(R.id.picture);
+        RatingBar ratingBar = layoutItem.findViewById(R.id.note);
+        TextView prix = layoutItem.findViewById(R.id.textPrice);
+        TextView matiere = layoutItem.findViewById(R.id.textSubjects);
+
         //(3) : Mise à jour des valeurs
-        name.setText(items.get(position).getName());
-        picture.setImageResource(items.get(position).getPicture());
-        ratingBar.setRating(items.get(position).getRank());
+        name.setText(items.get(position).getNom());
+        //picture.setImageResource(items.get(position).getPicture());
+        ratingBar.setRating(items.get(position).getNote());
+        prix.setText(items.get(position).getPrix());
+        matiere.setText(items.get(position).getMatiere());
+
         //(4) écouteur sur chaque élément de l'adapter
         layoutItem.setOnClickListener( click -> callBackActivity.onClicItem(position));
         //On retourne l'item créé.
-         */
         return layoutItem;
     }
 
