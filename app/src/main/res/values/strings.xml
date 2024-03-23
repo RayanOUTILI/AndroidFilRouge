@@ -18,4 +18,5 @@
     <string name="register">Créer un compte</string>
     <string name="mail">Adresse email</string>
     <string name="password">Mot de passe</string>
+    <string name="nom_de_l_utilisateur">Nom de l\'utilisateur</string>
 </resources>

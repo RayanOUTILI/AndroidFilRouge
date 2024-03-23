@@ -18,7 +18,7 @@
     <!-- Nom du prof -->
     <TextView
         android:id="@+id/profName"
-        android:text="Nom de l'utilisateur"
+        android:text="@string/nom_de_l_utilisateur"
         app:layout_constraintStart_toEndOf="@+id/imageProfile"
         app:layout_constraintTop_toTopOf="@+id/imageProfile"
         android:layout_marginStart="8dp"

@@ -1,24 +1,54 @@
 package edu.iut.proftracker.models;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+public class Professeur {
 
-public class Professeur extends Utilisateur {
-    private HashMap<Utilisateur, Avis> avis; // Utilisateur / List{note,avis}
+    private String nom;
+    private String matiere;
+    private float prix;
+    private float note;
+    private String image;
 
-
-    public Professeur(String nom, String prenom, String mail, ETypeUtilisateur eTypeUtilisateur, String localisation) {
-        super(nom, prenom, mail, eTypeUtilisateur, localisation);
-        this.avis = new HashMap<Utilisateur, Avis>();
+    public Professeur() {
+        super();
     }
 
-    public HashMap<Utilisateur, Avis> getAvis() {
-        return avis;
+    public String getNom() {
+        return nom;
     }
 
-    public void setAvis(HashMap<Utilisateur, Avis> avis) {
-        this.avis = avis;
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 
+    public String getMatiere() {
+        return matiere;
+    }
 
+    public void setMatiere(String matiere) {
+        this.matiere = matiere;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
+    public float getNote() {
+        return note;
+    }
+
+    public void setNote(float note) {
+        this.note = note;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
