@@ -71,6 +71,7 @@
                 <Button
                     android:layout_width="120dp"
                     android:layout_height="60sp"
+                    android:id="@+id/contacter"
                     app:layout_constraintStart_toEndOf="@id/nomProfile"
                     app:layout_constraintTop_toTopOf="@id/nomProfile"
                     android:text="@string/contacter"/>

@@ -22,6 +22,7 @@ import java.util.List;
 import edu.iut.proftracker.controllers.Clickable;
 import edu.iut.proftracker.controllers.HttpAsyncGet;
 import edu.iut.proftracker.controllers.PostExecuteActivity;
+import edu.iut.proftracker.models.Notification;
 import edu.iut.proftracker.models.Professeur;
 import edu.iut.proftracker.models.ProfesseurAdapter;
 
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         this.firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser == null) {
             this.loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -51,6 +53,11 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         String url = "https://rayanoutili.github.io/proftrackerjson/test.json";
         new HttpAsyncGet<>(url, Professeur.class, this, new ProgressDialog(MainActivity.this) );
 
+        Log.d(TAG, "onCreate: " + professeurList.size());
+        Notification.getNotification();
+        Notification.getNotification("Griffonnet");
+        Log.d(TAG, "onCreate: " + professeurList.size());
+
     }
 
     @Override
@@ -61,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         ListView listview = findViewById(R.id.listeViewRecherche);
         listview.setAdapter(adapter);
         Log.d(TAG,"itemList = " + itemList);
+
     }
 
     @Override
