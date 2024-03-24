@@ -4,9 +4,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.iut.proftracker.R;
@@ -44,17 +48,22 @@ public class ProfesseurAdapter extends BaseAdapter {
 
         //(2) : Récupération des éléments
         TextView name = layoutItem.findViewById(R.id.profName);
-        //ImageView picture = layoutItem.findViewById(R.id.picture);
+        ImageView picture = layoutItem.findViewById(R.id.imageProfile);
         RatingBar ratingBar = layoutItem.findViewById(R.id.note);
         TextView prix = layoutItem.findViewById(R.id.textPrice);
         TextView matiere = layoutItem.findViewById(R.id.textSubjects);
 
         //(3) : Mise à jour des valeurs
         name.setText(items.get(position).getNom());
-        //picture.setImageResource(items.get(position).getPicture());
+        Picasso.get().load(items.get(position).getImage()).into(picture);
         ratingBar.setRating(items.get(position).getNote());
         prix.setText(items.get(position).getPrix());
-        matiere.setText(items.get(position).getMatiere());
+        ArrayList<String> listMatieres = items.get(position).getMatieres();
+        StringBuilder matieresString = new StringBuilder();
+        listMatieres.forEach(item -> {
+            matieresString.append(item).append(" ");
+        });
+        matiere.setText(matieresString.toString());
 
         //(4) écouteur sur chaque élément de l'adapter
         layoutItem.setOnClickListener( click -> callBackActivity.onClicItem(position));

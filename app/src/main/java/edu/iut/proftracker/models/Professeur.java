@@ -5,10 +5,13 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Professeur implements Parcelable {
 
     private String nom;
-    private String matiere;
+    private ArrayList<String> matieres;
     private float prix;
     private float note;
     private String image;
@@ -19,7 +22,7 @@ public class Professeur implements Parcelable {
 
     public Professeur(Parcel in){
         this.nom = in.readString();
-        this.matiere = in.readString();
+        this.matieres = in.readArrayList(getClass().getClassLoader());
         this.prix = in.readFloat();
         this.note = in.readFloat();
         this.image = in.readString();
@@ -33,12 +36,12 @@ public class Professeur implements Parcelable {
         this.nom = nom;
     }
 
-    public String getMatiere() {
-        return matiere;
+    public ArrayList getMatieres() {
+        return matieres;
     }
 
-    public void setMatiere(String matiere) {
-        this.matiere = matiere;
+    public void setMatieres(ArrayList<String> matiere) {
+        this.matieres = matiere;
     }
 
     public String getPrix() {
@@ -62,7 +65,7 @@ public class Professeur implements Parcelable {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = "https://rayanoutili.github.io/proftrackerjson/images/" + image;
     }
 
     @Override
@@ -73,7 +76,7 @@ public class Professeur implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(this.nom);
-        dest.writeString(this.matiere);
+        dest.writeList(this.matieres);
         dest.writeFloat(this.prix);
         dest.writeFloat(this.note);
         dest.writeString(this.image);
