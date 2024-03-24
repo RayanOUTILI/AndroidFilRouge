@@ -26,6 +26,7 @@ import edu.iut.proftracker.controllers.Clickable;
 import edu.iut.proftracker.controllers.HttpAsyncGet;
 import edu.iut.proftracker.controllers.PostExecuteActivity;
 import edu.iut.proftracker.databinding.ActivityMainBinding;
+import edu.iut.proftracker.models.Notification;
 import edu.iut.proftracker.models.Professeur;
 import edu.iut.proftracker.models.ProfesseurAdapter;
 
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         this.firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser == null) {
             this.loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
         String url = "https://rayanoutili.github.io/proftrackerjson/data.json";
         new HttpAsyncGet<>(url, Professeur.class, this, new ProgressDialog(MainActivity.this) );
+
         com.google.android.material.bottomnavigation.BottomNavigationView menu = findViewById(R.id.menu);
         menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -74,6 +77,12 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 return true;
             }
         });
+
+        Log.d(TAG, "onCreate: " + professeurList.size());
+        Notification.getNotification();
+        Notification.getNotification("Griffonnet");
+        Log.d(TAG, "onCreate: " + professeurList.size());
+
     }
 
     @Override
@@ -84,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         ListView listview = findViewById(R.id.listeViewRecherche);
         listview.setAdapter(adapter);
         Log.d(TAG,"itemList = " + itemList);
+
     }
 
     @Override
