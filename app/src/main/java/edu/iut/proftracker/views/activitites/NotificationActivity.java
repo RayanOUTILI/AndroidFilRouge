@@ -24,11 +24,13 @@ public class NotificationActivity extends AppCompatActivity  implements Clickabl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
-        this.displayedNotifications = Notification.getNotification("Griffonnet");
+        this.displayedNotifications = Notification.getNotification("Outili");
+        System.out.println(displayedNotifications.size());
     }
 
     @Override
     public void onPostExecute(List<Notification> itemList) {
+        System.out.println("onPostExecute");
         adapter = new NotificationAdapter(displayedNotifications, this);
         ListView listview = findViewById(R.id.listeViewNotification);
         listview.setAdapter(adapter);

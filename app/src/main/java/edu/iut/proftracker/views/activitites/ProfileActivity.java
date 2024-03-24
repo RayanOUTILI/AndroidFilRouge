@@ -38,12 +38,12 @@ public class ProfileActivity extends AppCompatActivity {
         TextView textView = findViewById(R.id.nomProfile);
         textView.setText(professeur.getNom());
 
-        String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-        System.out.println(name);
+        //String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        //System.out.println(name);
 
         Button buttonContacter = findViewById(R.id.contacter);
         buttonContacter.setOnClickListener(v -> {
-            Notification.createNotification(professeur.getNom(), name, "Cagnes-sur-mer", "24/03/2024", "Mathématiques");
+            Notification.createNotification(professeur.getNom(), "rayan", "Cagnes-sur-mer", "24/03/2024", "Mathématiques");
         });
     }
 }

@@ -51,6 +51,7 @@ public class Notification {
                                 notifications.add(notification);
                             }
                             for (Notification notification : notifications) {
+                                System.out.println("getnotif de tout le monde");
                                 System.out.println(notification.professeur + " " + notification.eleve + " " + notification.lieu + " " + notification.date + " " + notification.matiere);
                                 Log.d(TAG, notification.professeur + " " + notification.eleve + " " + notification.lieu + " " + notification.date + " " + notification.matiere);
                             }
@@ -84,6 +85,7 @@ public class Notification {
                                 notifications.add(notification);
                             }
                             for (Notification notification : notifications) {
+                                System.out.println("getnotif de " + profConcerne);
                                 System.out.println(notification.professeur + " " + notification.eleve + " " + notification.lieu + " " + notification.date + " " + notification.matiere);
                                 Log.d(TAG, notification.professeur + " " + notification.eleve + " " + notification.lieu + " " + notification.date + " " + notification.matiere);
                             }

@@ -88,10 +88,8 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
             }
         });
 
-        Log.d(TAG, "onCreate: " + professeurList.size());
-        Notification.getNotification();
-        Notification.getNotification("Griffonnet");
-        Log.d(TAG, "onCreate: " + professeurList.size());
+        //Notification.getNotification();
+        //Notification.getNotification("Griffonnet");
 
         /*
         Filtrer les professeurs par matières
