@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -38,6 +40,14 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     private Intent professorIntent, loginIntent;
     private FirebaseUser firebaseUser;
     ActivityMainBinding binding;
+
+    private Button buttonFrancais;
+
+    private Button buttonMathematiques;
+
+    private Button buttonHistoire;
+
+    private Button buttonInformatique;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +93,42 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         Notification.getNotification("Griffonnet");
         Log.d(TAG, "onCreate: " + professeurList.size());
 
+        /*
+        Filtrer les professeurs par matières
+         */
+        buttonFrancais = findViewById(R.id.buttonFrancais);
+        buttonMathematiques = findViewById(R.id.buttonMathematiques);
+        buttonHistoire = findViewById(R.id.buttonHistoire);
+        buttonInformatique = findViewById(R.id.buttonInformatique);
+
+        buttonFrancais.setOnClickListener(view -> {
+            filterProfesseursByMatiere("Français");
+            resetButtonsColors();
+            buttonFrancais.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        });
+        buttonMathematiques.setOnClickListener(view -> {
+            filterProfesseursByMatiere("Mathématiques");
+            resetButtonsColors();
+            buttonMathematiques.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        });
+        buttonHistoire.setOnClickListener(view -> {
+            filterProfesseursByMatiere("Histoire");
+            resetButtonsColors();
+            buttonHistoire.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        });
+        buttonInformatique.setOnClickListener(view -> {
+            filterProfesseursByMatiere("Informatique");
+            resetButtonsColors();
+            buttonInformatique.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        });
+
+    }
+
+    public void resetButtonsColors() {
+        buttonFrancais.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+        buttonMathematiques.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+        buttonHistoire.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+        buttonInformatique.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
     }
 
     @Override
@@ -93,7 +139,19 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         ListView listview = findViewById(R.id.listeViewRecherche);
         listview.setAdapter(adapter);
         Log.d(TAG,"itemList = " + itemList);
+    }
 
+    // Filtrer les professeurs par matières
+    private void filterProfesseursByMatiere(String matiere) {
+        List<Professeur> filteredProfesseurs = new ArrayList<>();
+        for (Professeur professeur : professeurList) {
+            if (professeur.getMatieres().contains(matiere)) {
+                filteredProfesseurs.add(professeur);
+            }
+        }
+        displayedprofesseur.clear();
+        displayedprofesseur.addAll(filteredProfesseurs);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
