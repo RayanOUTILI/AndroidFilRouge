@@ -9,6 +9,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.iut.proftracker.views.activitites.NotificationActivity;
+
 public class Notification {
     private static final String TAG = "Notification";
 
@@ -63,7 +65,7 @@ public class Notification {
         return notifications;
     }
 
-    public static List<Notification> getNotification(String profConcerne) {
+    public static List<Notification> getNotification(String profConcerne, NotificationActivity notificationActivity) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         List<Notification> notifications = new ArrayList<>();
 
@@ -89,6 +91,7 @@ public class Notification {
                                 System.out.println(notification.professeur + " " + notification.eleve + " " + notification.lieu + " " + notification.date + " " + notification.matiere);
                                 Log.d(TAG, notification.professeur + " " + notification.eleve + " " + notification.lieu + " " + notification.date + " " + notification.matiere);
                             }
+                            notificationActivity.onPostExecute(notifications);
                         } else {
                             Log.e(TAG, "Erreur lors de la récupération des notifications", task.getException());
                         }

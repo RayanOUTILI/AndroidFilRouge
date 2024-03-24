@@ -40,7 +40,7 @@ public class NotificationAdapter extends BaseAdapter {
 
         //(1) : Réutilisation des layouts (lorsque c'est possible)
         layoutItem = (convertView == null
-                ? mInflater.inflate(R.layout.professor_layout, parent, false)
+                ? mInflater.inflate(R.layout.notification_item, parent, false)
                 : convertView);
 
         //(2) : Récupération des éléments
