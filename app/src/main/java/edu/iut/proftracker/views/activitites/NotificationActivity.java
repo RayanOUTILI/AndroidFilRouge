@@ -15,7 +15,7 @@ import edu.iut.proftracker.controllers.PostExecuteActivity;
 import edu.iut.proftracker.models.Notification;
 import edu.iut.proftracker.models.NotificationAdapter;
 
-public class NotificationActivity extends AppCompatActivity  {
+public class NotificationActivity extends AppCompatActivity {
     private List<Notification> displayedNotifications = new ArrayList<>();
 
     private NotificationAdapter adapter;
@@ -33,6 +33,7 @@ public class NotificationActivity extends AppCompatActivity  {
         listview.setAdapter(adapter);
     }
 
-
-
+    public Context getContext() {
+        return this;
+    }
 }
