@@ -36,7 +36,7 @@ public class Professeur implements Parcelable {
         this.nom = nom;
     }
 
-    public ArrayList getMatieres() {
+    public ArrayList<String> getMatieres() {
         return matieres;
     }
 
