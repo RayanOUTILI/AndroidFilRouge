@@ -76,24 +76,61 @@
                     app:layout_constraintTop_toTopOf="@id/nomProfile"
                     android:text="@string/contacter"/>
 
-                <ListView
-                    android:layout_width="350sp"
-                    android:layout_height="40sp"
-                    app:layout_constraintTop_toBottomOf="@id/nomProfile"
-                    app:layout_constraintStart_toStartOf="@id/nomProfile"
-                    android:id="@+id/listCompetence"
-                    android:orientation="horizontal"
-                    android:background="@color/black"
-                    />
+                <TextView
+                    android:id="@+id/permiereMatiere"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="10dp"
+                    android:textAlignment="center"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/nomProfile"
+                    app:layout_constraintEnd_toStartOf="@id/deuxiemeMatiere" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/dot_24"
+                    app:layout_constraintEnd_toStartOf="@+id/deuxiemeMatiere"
+                    app:layout_constraintStart_toEndOf="@+id/permiereMatiere"
+                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/dot_24"
+                    app:layout_constraintEnd_toStartOf="@+id/troisiemeMatiere"
+                    app:layout_constraintStart_toEndOf="@+id/deuxiemeMatiere"
+                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere" />
 
                 <TextView
+                    android:id="@+id/deuxiemeMatiere"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintStart_toEndOf="@+id/permiereMatiere"
+                    app:layout_constraintEnd_toStartOf="@id/troisiemeMatiere"
+                    app:layout_constraintTop_toTopOf="@+id/permiereMatiere"
+                    android:textAlignment="center"
+                    />
+
+
+                <TextView
+                    android:id="@+id/troisiemeMatiere"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:textAlignment="center"
+                    app:layout_constraintStart_toEndOf="@+id/deuxiemeMatiere"
+                    app:layout_constraintTop_toTopOf="@+id/permiereMatiere" />
+
+                <TextView
+                    android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="70sp"
-                    app:layout_constraintStart_toStartOf="parent"
                     android:layout_margin="10dp"
-                    app:layout_constraintTop_toBottomOf="@id/listCompetence"
                     android:text="@string/exemple3"
-                    />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/permiereMatiere" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

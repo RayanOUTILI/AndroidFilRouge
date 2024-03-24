@@ -25,6 +25,7 @@ public class NotificationActivity extends AppCompatActivity  implements Clickabl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
         this.displayedNotifications = Notification.getNotification("Griffonnet");
+
     }
 
     @Override

@@ -72,26 +72,20 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-                final int idhome = findViewById(R.id.homePage).getId();
                 final int idnotification = R.id.notificationPage;
                 final int idProfile = R.id.profilePage;
-                if(idhome == id){
-                }else if(idnotification == id){
+                if(idnotification == id){
                     Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
                     intent.putExtra("key",1);
                     startActivity(intent);
                 }else if(id == idProfile){
+
                 }else{
                     System.out.println("DKNOW");
                 }
                 return true;
             }
         });
-
-        Log.d(TAG, "onCreate: " + professeurList.size());
-        Notification.getNotification();
-        Notification.getNotification("Griffonnet");
-        Log.d(TAG, "onCreate: " + professeurList.size());
 
         /*
         Filtrer les professeurs par matières
