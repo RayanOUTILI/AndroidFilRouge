@@ -66,11 +66,11 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 final int idnotification = R.id.notificationPage;
                 final int idProfile = R.id.profilePage;
                 if(idhome == id){
-                    setContentView(R.layout.activity_main);
                 }else if(idnotification == id){
-                    setContentView(R.layout.activity_notification);
+                    Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
+                    intent.putExtra("key",1);
+                    startActivity(intent);
                 }else if(id == idProfile){
-                    setContentView(R.layout.activity_profile);
                 }else{
                     System.out.println("DKNOW");
                 }

@@ -1,6 +1,7 @@
 package edu.iut.proftracker.views.activitites;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,15 +15,15 @@ import edu.iut.proftracker.controllers.PostExecuteActivity;
 import edu.iut.proftracker.models.Notification;
 import edu.iut.proftracker.models.NotificationAdapter;
 
-public class NotificationActivity extends AppCompatActivity implements Clickable, PostExecuteActivity<Notification>{
-
+public class NotificationActivity extends AppCompatActivity  implements Clickable, PostExecuteActivity<Notification>  {
     private List<Notification> displayedNotifications = new ArrayList<>();
 
     private NotificationAdapter adapter;
 
-
-    public void onCreate() {
-        // à remplacer par le professeur connecté
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_notification);
         this.displayedNotifications = Notification.getNotification("Griffonnet");
     }
 
@@ -41,6 +42,8 @@ public class NotificationActivity extends AppCompatActivity implements Clickable
 
     @Override
     public Context getContext() {
-        return null;
+        return getApplicationContext();
     }
+
+
 }
