@@ -7,57 +7,96 @@
     >
 
     <TextView
+        android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login"
         android:textSize="25sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <Button
+        android:id="@+id/launchAnim"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Launch anim"
+        app:layout_constraintTop_toBottomOf="@id/login"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        />
+
+    <ImageView
+        android:id="@+id/library"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="220dp"
+        android:src="@drawable/bibliotheque"
+        android:scaleX="-1"
+        android:visibility="visible"
+        android:rotation="20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/book"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/book"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/livre"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@id/loginButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/library2"
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="220dp"
+        android:src="@drawable/bibliotheque"
+        android:visibility="visible"
+        android:rotation="-20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="@id/book"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         />
 
 
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailInput"
+    <EditText
+        android:id="@+id/usernameInputField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/username"
+        android:autofillHints="username"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/emailInputField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/mail"
-            />
+        />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passwordInput"
+    <EditText
+        android:id="@+id/passwordInputField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:autofillHints="password"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailInput"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/usernameInputField"
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/passwordInputField"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/password"
-            />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
+        />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInput"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInputField"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         />

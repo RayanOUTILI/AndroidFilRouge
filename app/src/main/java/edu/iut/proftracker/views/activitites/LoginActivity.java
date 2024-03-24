@@ -2,7 +2,11 @@ package edu.iut.proftracker.views.activitites;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 import edu.iut.proftracker.R;
 
@@ -40,27 +45,19 @@ public class LoginActivity extends AppCompatActivity {
         this.firebaseAuth = FirebaseAuth.getInstance();
     
         Button loginButton = findViewById(R.id.loginButton);
-        TextInputEditText emailTextField = findViewById(R.id.emailInputField);
-        TextInputEditText passwordTextField = findViewById(R.id.passwordInputField);
+        EditText usernameTextField = findViewById(R.id.usernameInputField);
+        EditText passwordTextField = findViewById(R.id.passwordInputField);
 
         TextView forgotPasswordLink = findViewById(R.id.forgottenPassword);
         TextView registerLink = findViewById(R.id.noAccount);
 
-        forgotPasswordLink.setOnClickListener(
+        Button animation = findViewById(R.id.launchAnim);
+        animation.setOnClickListener(
                 click -> {
-                    this.firebaseAuth.sendPasswordResetEmail(emailTextField.getText().toString())
-                            .addOnCompleteListener(
-                                    task -> {
-                                        if(task.isSuccessful()) {
-                                            Toast.makeText(getApplicationContext(), "Un mail de réinitialisation de mot de passe vous a été envoyé", Toast.LENGTH_LONG).show();
-                                        }
-                                        else {
-                                            Toast.makeText(getApplicationContext(), "Une erreur est survenue lors de l'envoi du mail de réinitialisation de mot de passe", Toast.LENGTH_LONG).show();
-                                        }
-                                    }
-                            );
+                    animation();
                 }
         );
+
 
         registerLink.setOnClickListener(
                 click -> {
@@ -69,38 +66,54 @@ public class LoginActivity extends AppCompatActivity {
                 }
         );
 
-
         loginButton.setOnClickListener(
                 click -> {
-                    if(emailTextField.getText().toString().equals("")) {
-                        fieldError(emailTextField);
+                    if(usernameTextField.getText().toString().equals("")) {
+                        fieldError(usernameTextField);
                     }
                     else if (passwordTextField.getText().toString().equals("")){
                         fieldError(passwordTextField);
                     }
                     else {
-                        this.firebaseAuth.signInWithEmailAndPassword(emailTextField.getText().toString(), passwordTextField.getText().toString())
-                                .addOnCompleteListener(
-                                        task -> {
-                                            if(task.isSuccessful()) {
-                                                mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                                                startActivity(mainIntent);
-                                            }
-                                            else {
-                                                loginError();
-                                            }
-                                    });
+                        login(usernameTextField.getText().toString(), passwordTextField.getText().toString());
                     }
                 }
         );
 
     }
 
-    public void fieldError(TextInputEditText textField) {
+    private void login(String email, String password) {
+        this.firebaseAuth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        this.mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(mainIntent);
+                    } else {
+                        loginError();
+                    }
+                });
+    }
+
+    public void fieldError(EditText textField) {
         // TODO Faire en sorte de surligner l'input en rouge pour signaler l'erreur
     }
 
     public void loginError() {
         // TODO Faire quelque chose pour montrer que soit le mot de passe soit le login est faux
+    }
+
+    public void animation() {
+        ImageView lib1 = findViewById(R.id.library);
+        ImageView lib2 = findViewById(R.id.library2);
+
+        ImageView book = findViewById(R.id.book);
+        Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.book_animation);
+        book.startAnimation(anim);
+
+        Animation anim2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.lib_animation);
+        lib1.startAnimation(anim2);
+
+        Animation anim3 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.lib2_animation);
+        lib2.startAnimation(anim3);
     }
 }

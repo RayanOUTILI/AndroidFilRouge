@@ -3,6 +3,7 @@ package edu.iut.proftracker.views.activitites;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import edu.iut.proftracker.R;
 
@@ -31,12 +33,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         Button registerButton = findViewById(R.id.registerButton);
 
-        TextInputEditText emailTextField = findViewById(R.id.emailInputField);
-        TextInputEditText passwordTextField = findViewById(R.id.passwordInputField);
+        EditText usernameTextField = findViewById(R.id.usernameInputField);
+        EditText emailTextField = findViewById(R.id.emailInputField);
+        EditText passwordTextField = findViewById(R.id.passwordInputField);
 
-        TextView registerLink = findViewById(R.id.havingAccount);
+        TextView loginLink = findViewById(R.id.havingAccount);
 
-        registerLink.setOnClickListener(
+        loginLink.setOnClickListener(
                 click -> {
                     this.loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(loginIntent);
@@ -51,23 +54,36 @@ public class RegisterActivity extends AppCompatActivity {
                     else if (passwordTextField.getText().toString().equals("")){
                         fieldError(passwordTextField);
                     }
+                    else if (usernameTextField.getText().toString().equals("")){
+                        fieldError(usernameTextField);
+                    }
                     else {
-                        this.firebaseAuth.createUserWithEmailAndPassword(emailTextField.getText().toString(), passwordTextField.getText().toString())
-                                .addOnCompleteListener(
-                                        task -> {
-                                            if(task.isSuccessful()) {
-                                                mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                                                startActivity(mainIntent);
-                                            }
-                                            else {
-                                                registerError();
-                                            }
-                                    });
+                        register(emailTextField.getText().toString(), passwordTextField.getText().toString(), usernameTextField.getText().toString());
+
                     }
                 });
     }
 
-    public void fieldError(TextInputEditText textField) {
+    private void register(String email, String password, String username) {
+        this.firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                        user.updateProfile(
+                                new UserProfileChangeRequest.Builder()
+                                        .setDisplayName(username)
+                                        .build()
+                        );
+                        this.mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(mainIntent);
+                    } else {
+                        registerError();
+                    }
+
+                });
+    }
+
+    public void fieldError(EditText textField) {
         // TODO Faire en sorte de surligner l'input en rouge pour signaler l'erreur
     }
 

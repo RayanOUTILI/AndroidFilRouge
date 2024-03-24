@@ -90,7 +90,7 @@
             app:layout_constraintTop_toBottomOf="@id/listCompetence"
             android:text="@string/exemple3"
             />
-            
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

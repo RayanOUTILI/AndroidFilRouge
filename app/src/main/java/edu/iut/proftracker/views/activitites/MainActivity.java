@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,13 +39,22 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /*
+
         this.firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         if(firebaseUser == null) {
             this.loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(loginIntent);
         }
-        */
+
+        Button logoutButton = findViewById(R.id.logout);
+        logoutButton.setOnClickListener(
+                click -> {
+                    FirebaseAuth.getInstance().signOut();
+                    this.loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(loginIntent);
+                }
+        );
+
 
         TextView textView = findViewById(R.id.title);
         Button fr = findViewById(R.id.buttonFrancais);
@@ -79,4 +89,5 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     public Context getContext() {
         return getApplicationContext();
     }
+
 }
