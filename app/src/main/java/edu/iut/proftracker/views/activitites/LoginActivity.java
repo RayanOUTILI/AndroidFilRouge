@@ -19,6 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import edu.iut.proftracker.R;
 
@@ -82,8 +83,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void login(String username, String password){
-        String email = Fire
+    private void login(String username, String password) {
+
 
     }
 

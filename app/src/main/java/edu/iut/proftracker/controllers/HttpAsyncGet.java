@@ -98,7 +98,6 @@ public class HttpAsyncGet<T>{
             try {
                 while ((line = reader.readLine()) != null) {
                     stringBuilder.append(line).append('\n');
-                    Log.e(TAG,line);
                 }
             }
             catch (IOException e) {  e.printStackTrace();   }

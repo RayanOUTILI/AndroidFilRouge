@@ -6,22 +6,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import edu.iut.proftracker.R;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firebaseFirestore;
     private Intent loginIntent, mainIntent;
 
     @Override
@@ -30,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         this.firebaseAuth = FirebaseAuth.getInstance();
+        this.firebaseFirestore = FirebaseFirestore.getInstance();
 
         Button registerButton = findViewById(R.id.registerButton);
 
@@ -59,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                     else {
                         register(emailTextField.getText().toString(), passwordTextField.getText().toString(), usernameTextField.getText().toString());
-
                     }
                 });
     }
@@ -69,11 +70,20 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
-                        user.updateProfile(
-                                new UserProfileChangeRequest.Builder()
-                                        .setDisplayName(username)
-                                        .build()
-                        );
+                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(username)
+                                .build();
+                        user.updateProfile(profileUpdates);
+                        Map<String, String> dataToPush = new HashMap<String, String>();
+                        dataToPush.put("username", username);
+                        dataToPush.put("email", email);
+                        firebaseFirestore.collection("utilisateurs").add(dataToPush)
+                                .addOnCompleteListener(
+                                        task2 -> {
+                                            System.out.println(task2.isSuccessful());
+                                        }
+                                );
+
                         this.mainIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(mainIntent);
                     } else {
