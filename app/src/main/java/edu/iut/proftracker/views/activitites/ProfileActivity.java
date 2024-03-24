@@ -51,10 +51,11 @@ public class ProfileActivity extends AppCompatActivity {
         premierMatiere.setText(matieres.get(0));
         deuxiemeMatiere.setText(matieres.get(1));
         troisiemeMatiere.setText(matieres.get(2));
-
+        //String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        //System.out.println(name);
         Button buttonContacter = findViewById(R.id.contacter);
         buttonContacter.setOnClickListener(v -> {
-            Notification.createNotification(professeur.getNom(), name, "Cagnes-sur-mer", "24/03/2024", "Mathématiques");
+            Notification.createNotification(professeur.getNom(), "rayan", "Cagnes-sur-mer", "24/03/2024", "Mathématiques");
         });
     }
 }

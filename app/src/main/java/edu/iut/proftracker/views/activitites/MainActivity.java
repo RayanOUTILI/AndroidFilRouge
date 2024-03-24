@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 return true;
             }
         });
-
         /*
         Filtrer les professeurs par matières
          */
@@ -119,10 +118,10 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     }
 
     public void resetButtonsColors() {
-        buttonFrancais.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
-        buttonMathematiques.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
-        buttonHistoire.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
-        buttonInformatique.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+        buttonFrancais.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
+        buttonMathematiques.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
+        buttonHistoire.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
+        buttonInformatique.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
     }
 
     @Override
