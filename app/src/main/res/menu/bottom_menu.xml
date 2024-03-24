@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/homePage"
         android:title="Menu" />
     <item
-        android:id="@+id/profile"
+        android:id="@+id/profilePage"
         android:title="Profil" />
-    <item android:id="@+id/notification"
-
+    <item android:id="@+id/notificationPage"
         android:title="Notification"/>
 </menu>

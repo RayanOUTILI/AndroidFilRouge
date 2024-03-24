@@ -19,7 +19,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 
 import edu.iut.proftracker.R;
 
@@ -48,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         EditText usernameTextField = findViewById(R.id.usernameInputField);
         EditText passwordTextField = findViewById(R.id.passwordInputField);
 
-        TextView forgotPasswordLink = findViewById(R.id.forgottenPassword);
         TextView registerLink = findViewById(R.id.noAccount);
 
         Button animation = findViewById(R.id.launchAnim);
@@ -66,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
         );
 
+
         loginButton.setOnClickListener(
                 click -> {
                     if(usernameTextField.getText().toString().equals("")) {
@@ -76,22 +75,16 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else {
                         login(usernameTextField.getText().toString(), passwordTextField.getText().toString());
+
                     }
                 }
         );
 
     }
 
-    private void login(String email, String password) {
-        this.firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        this.mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(mainIntent);
-                    } else {
-                        loginError();
-                    }
-                });
+    private void login(String username, String password){
+        String email = Fire
+
     }
 
     public void fieldError(EditText textField) {
