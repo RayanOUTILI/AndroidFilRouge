@@ -17,7 +17,7 @@ import edu.iut.proftracker.views.activitites.NotificationActivity;
 public class NotificationAdapter extends BaseAdapter {
     private final List<Notification> items;
     private final LayoutInflater mInflater;
-    private final Clickable callBackActivity;
+    private final NotificationActivity callBackActivity;
 
     public NotificationAdapter(List<Notification> items, NotificationActivity callBackActivity) {
         this.items = items;
@@ -40,7 +40,7 @@ public class NotificationAdapter extends BaseAdapter {
 
         //(1) : Réutilisation des layouts (lorsque c'est possible)
         layoutItem = (convertView == null
-                ? mInflater.inflate(R.layout.professor_layout, parent, false)
+                ? mInflater.inflate(R.layout.notification_item, parent, false)
                 : convertView);
 
         //(2) : Récupération des éléments
@@ -51,7 +51,7 @@ public class NotificationAdapter extends BaseAdapter {
         name.setText(message);
 
         //(4) écouteur sur chaque élément de l'adapter
-        layoutItem.setOnClickListener( click -> callBackActivity.onClicItem(position));
+        //layoutItem.setOnClickListener( click -> callBackActivity.onClicItem(position));
         //On retourne l'item créé.
         return layoutItem;
     }

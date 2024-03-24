@@ -50,11 +50,12 @@
             app:layout_constraintTop_toBottomOf="@id/title" />
 
     <Button
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="20dp"
         app:layout_constraintStart_toEndOf="@+id/searchView"
         app:layout_constraintTop_toTopOf="@+id/searchView"
+        android:backgroundTint="@color/buttonColor"
         android:text="@string/arrow" />
 
         <!-- Label "Filtre" -->
@@ -90,6 +91,7 @@
                     android:id="@+id/buttonFrancais"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/buttonColor"
                     android:layout_marginStart="8dp"
                     android:text="Français" />
 
@@ -97,6 +99,7 @@
                     android:id="@+id/buttonMathematiques"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/buttonColor"
                     android:layout_marginStart="8dp"
                     android:text="Mathématiques" />
 
@@ -104,6 +107,7 @@
                     android:id="@+id/buttonHistoire"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/buttonColor"
                     android:layout_marginStart="8dp"
                     android:text="Histoire" />
 
@@ -111,6 +115,7 @@
                     android:id="@+id/buttonInformatique"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/buttonColor"
                     android:layout_marginStart="8dp"
                     android:text="Informatique" />
             </LinearLayout>

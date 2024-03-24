@@ -13,6 +13,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 import edu.iut.proftracker.R;
 import edu.iut.proftracker.models.Notification;
@@ -34,16 +37,25 @@ public class ProfileActivity extends AppCompatActivity {
         Professeur professeur = getIntent().getExtras().getParcelable(getString(R.string.key));
         assert professeur != null;
         ImageView imageView = findViewById(R.id.profilepicture);
-        // TODO image
         TextView textView = findViewById(R.id.nomProfile);
         textView.setText(professeur.getNom());
 
         String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-        System.out.println(name);
+        Picasso.get().load(professeur.getImage()).into(imageView);
 
+        TextView premierMatiere = findViewById(R.id.permiereMatiere);
+        TextView deuxiemeMatiere = findViewById(R.id.deuxiemeMatiere);
+        TextView troisiemeMatiere = findViewById(R.id.troisiemeMatiere);
+
+        ArrayList<String> matieres = professeur.getMatieres();
+        premierMatiere.setText(matieres.get(0));
+        deuxiemeMatiere.setText(matieres.get(1));
+        troisiemeMatiere.setText(matieres.get(2));
+        //String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        //System.out.println(name);
         Button buttonContacter = findViewById(R.id.contacter);
         buttonContacter.setOnClickListener(v -> {
-            Notification.createNotification(professeur.getNom(), name, "Cagnes-sur-mer", "24/03/2024", "Mathématiques");
+            Notification.createNotification(professeur.getNom(), "rayan", "Cagnes-sur-mer", "24/03/2024", "Mathématiques");
         });
     }
 }
