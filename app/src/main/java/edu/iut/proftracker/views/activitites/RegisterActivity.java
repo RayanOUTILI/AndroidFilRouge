@@ -74,16 +74,7 @@ public class RegisterActivity extends AppCompatActivity {
                                 .setDisplayName(username)
                                 .build();
                         user.updateProfile(profileUpdates);
-                        Map<String, String> dataToPush = new HashMap<String, String>();
-                        dataToPush.put("username", username);
-                        dataToPush.put("email", email);
-                        firebaseFirestore.collection("utilisateurs").add(dataToPush)
-                                .addOnCompleteListener(
-                                        task2 -> {
-                                            System.out.println(task2.isSuccessful());
-                                        }
-                                );
-
+                        addUsernameToDatabase(username, email);
                         this.mainIntent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(mainIntent);
                     } else {
@@ -93,8 +84,20 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
+    private void addUsernameToDatabase(String username, String email) {
+        Map<String, String> dataToPush = new HashMap<>();
+        dataToPush.put("username", username);
+        dataToPush.put("email", email);
+        firebaseFirestore.collection("utilisateurs").add(dataToPush);
+    }
+
     public void fieldError(EditText textField) {
-        // TODO Faire en sorte de surligner l'input en rouge pour signaler l'erreur
+        switch(textField.getInputType()) {
+            case 1:
+                break;
+            default:
+                break;
+        }
     }
 
     public void registerError() {

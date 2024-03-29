@@ -1,6 +1,8 @@
 package edu.iut.proftracker.views.activitites;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -74,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(usernameTextField.getText().toString().equals("")) {
                         fieldError(usernameTextField);
                     }
-                    else if (passwordTextField.getText().toString().equals("")){
+                    if (passwordTextField.getText().toString().equals("")){
                         fieldError(passwordTextField);
                     }
                     else {
@@ -120,11 +122,19 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void fieldError(EditText textField) {
-
+        Drawable textFieldBackground = textField.getBackground();
+        if(textFieldBackground instanceof ShapeDrawable) {
+            ((ShapeDrawable) textFieldBackground).getPaint().setColor(getResources().getColor(R.color.red, getTheme()));
+        }
     }
 
     public void loginError() {
-        // TODO Faire quelque chose pour montrer que soit le mot de passe soit le login est faux
+       Drawable textFieldBackground = findViewById(R.id.usernameInputField).getBackground();
+       Drawable passwordFieldBackground = findViewById(R.id.passwordInputField).getBackground();
+       if(textFieldBackground instanceof  ShapeDrawable && passwordFieldBackground instanceof  ShapeDrawable) {
+           ((ShapeDrawable) textFieldBackground).getPaint().setColor(getResources().getColor(R.color.red, getTheme()));
+            ((ShapeDrawable) passwordFieldBackground).getPaint().setColor(getResources().getColor(R.color.red, getTheme()));
+       }
     }
 
     public void animation() {

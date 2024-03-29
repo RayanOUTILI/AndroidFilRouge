@@ -6,4 +6,6 @@
     <color name="blue">#d0e8fc</color>
     <color name="beige">#ffffff</color>
     <color name="buttonColor">#005072</color>
+    <color name="loginAndRegisterInputColor">#3C6AF3</color>
+    <color name="red">#FF0000</color>
 </resources>
