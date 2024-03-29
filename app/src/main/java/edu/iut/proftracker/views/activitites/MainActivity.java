@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,7 +28,6 @@ import edu.iut.proftracker.controllers.Clickable;
 import edu.iut.proftracker.controllers.HttpAsyncGet;
 import edu.iut.proftracker.controllers.PostExecuteActivity;
 import edu.iut.proftracker.databinding.ActivityMainBinding;
-import edu.iut.proftracker.models.Notification;
 import edu.iut.proftracker.models.Professeur;
 import edu.iut.proftracker.models.ProfesseurAdapter;
 
@@ -85,12 +83,24 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 int id = menuItem.getItemId();
                 final int idnotification = R.id.notificationPage;
                 final int idProfile = R.id.profilePage;
+
+                final String ProfName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+
+                Professeur professeurConnecte = null;
+                for (Professeur prof : professeurList) {
+                    if(prof.getNom().equals(ProfName)){
+                        professeurConnecte = prof;
+                    }
+                }
+
                 if(idnotification == id){
                     Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
                     intent.putExtra("key",1);
                     startActivity(intent);
                 }else if(id == idProfile){
-
+                    Intent intent = new Intent(MainActivity.this, ProfesseurProfilActivity.class);
+                    intent.putExtra("key",professeurConnecte);
+                    startActivity(intent);
                 }else{
                     System.out.println("DKNOW");
                 }

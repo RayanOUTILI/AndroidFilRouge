@@ -23,6 +23,9 @@
             android:name=".views.activitites.ProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".views.activitites.ProfesseurProfilActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.activitites.MainActivity"
             android:exported="true">
             <intent-filter>
