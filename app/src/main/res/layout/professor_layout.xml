@@ -18,7 +18,7 @@
     <!-- Nom du prof -->
     <TextView
         android:id="@+id/profName"
-        android:text="@string/nom_de_l_utilisateur"
+        android:text="@string/profile_picture"
         app:layout_constraintStart_toEndOf="@+id/imageProfile"
         app:layout_constraintTop_toTopOf="@+id/imageProfile"
         android:layout_marginStart="8dp"
@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="@string/prix"
+        android:text="@string/prof_tracker"
         app:layout_constraintStart_toStartOf="@+id/textSubjects"
         app:layout_constraintTop_toBottomOf="@+id/textSubjects" />
 
@@ -61,19 +61,17 @@
     <!-- Prix -->
     <RatingBar
         android:id="@+id/note"
+        style="@style/CustomRatingBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="5"
+        android:layout_marginTop="60dp"
         android:numStars="5"
-        android:scaleX="0.5"
-        android:scaleY="0.5"
+        android:scaleX="0.9"
+        android:scaleY="0.9"
         android:stepSize="0.01"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="@id/textPrice"
-        android:layout_marginTop="50dp"
-        android:layout_marginStart="60dp"
-        />
+        app:layout_constraintStart_toEndOf="@+id/textPrice"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!-- <TextView
         android:id="@+id/textPrice"

@@ -7,25 +7,35 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
 
 public class Professeur implements Parcelable {
 
     private String nom;
     private ArrayList<String> matieres;
     private float prix;
-    private float note;
     private String image;
+    private String lieu;
+    private String mail;
+    private String description;
+    private ArrayList<Commentaire> commentaires;
 
     public Professeur() {
         super();
     }
 
-    public Professeur(Parcel in){
+    protected Professeur(Parcel in) {
         this.nom = in.readString();
-        this.matieres = in.readArrayList(getClass().getClassLoader());
+        this.matieres = in.createStringArrayList();
         this.prix = in.readFloat();
-        this.note = in.readFloat();
         this.image = in.readString();
+        this.lieu = in.readString();
+        this.mail = in.readString();
+        this.description = in.readString();
+        this.commentaires = in.createTypedArrayList(Commentaire.CREATOR);
     }
 
     public String getNom() {
@@ -40,24 +50,16 @@ public class Professeur implements Parcelable {
         return matieres;
     }
 
-    public void setMatieres(ArrayList<String> matiere) {
-        this.matieres = matiere;
+    public void setMatieres(ArrayList<String> matieres) {
+        this.matieres = matieres;
     }
 
     public String getPrix() {
-        return prix+ " €/h";
+        return prix + " €/h";
     }
 
     public void setPrix(float prix) {
         this.prix = prix;
-    }
-
-    public float getNote() {
-        return note;
-    }
-
-    public void setNote(float note) {
-        this.note = note;
     }
 
     public String getImage() {
@@ -68,18 +70,62 @@ public class Professeur implements Parcelable {
         this.image = "https://rayanoutili.github.io/proftrackerjson/images/" + image;
     }
 
+    public String getLieu() {
+        return lieu;
+    }
+
+    public void setLieu(String lieu) {
+        this.lieu = lieu;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ArrayList<Commentaire> getCommentaires() {
+        return commentaires;
+    }
+
+    public void setCommentaires(ArrayList<Commentaire> commentaires) {
+        this.commentaires = commentaires;
+    }
+
+    //on calcule la note moyenne du professeur
+    public float getNote() {
+        float note = 0;
+        for (Commentaire commentaire : commentaires) {
+            note += commentaire.getNote();
+        }
+        return note / commentaires.size();
+    }
+
     @Override
     public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
+    public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.nom);
-        dest.writeList(this.matieres);
+        dest.writeStringList(this.matieres);
         dest.writeFloat(this.prix);
-        dest.writeFloat(this.note);
         dest.writeString(this.image);
+        dest.writeString(this.lieu);
+        dest.writeString(this.mail);
+        dest.writeString(this.description);
+        dest.writeTypedList(this.commentaires);
     }
 
     public static final Parcelable.Creator<Professeur> CREATOR = new Parcelable.Creator<Professeur>() {
@@ -87,14 +133,14 @@ public class Professeur implements Parcelable {
         public Professeur createFromParcel(Parcel source) {
             return new Professeur(source);
         }
+
         @Override
-        public Professeur[] newArray(int size)
-        {
+        public Professeur[] newArray(int size) {
             return new Professeur[size];
         }
     };
+
     public static Parcelable.Creator<Professeur> getCreator() {
         return CREATOR;
     }
 }
-
