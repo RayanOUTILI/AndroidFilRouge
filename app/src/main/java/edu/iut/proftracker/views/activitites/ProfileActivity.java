@@ -54,8 +54,9 @@ public class ProfileActivity extends AppCompatActivity {
         //String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         //System.out.println(name);
         Button buttonContacter = findViewById(R.id.contacter);
+        String nomEleve = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         buttonContacter.setOnClickListener(v -> {
-            Notification.createNotification(professeur.getNom(), "rayan", "Cagnes-sur-mer", "24/03/2024", "Mathématiques");
+            Notification.createNotification(professeur.getNom(), nomEleve , "Cagnes-sur-mer", "24/03/2024", "Mathématiques");
         });
     }
 }

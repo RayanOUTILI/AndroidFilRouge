@@ -6,6 +6,9 @@ import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +20,7 @@ import edu.iut.proftracker.models.NotificationAdapter;
 
 public class NotificationActivity extends AppCompatActivity {
     private List<Notification> displayedNotifications = new ArrayList<>();
+    private FirebaseUser firebaseUser;
 
     private NotificationAdapter adapter;
 
@@ -24,7 +28,8 @@ public class NotificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
-        this.displayedNotifications = Notification.getNotification("Outili", this);
+        String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        this.displayedNotifications = Notification.getNotification(username, this);
     }
 
     public void onPostExecute(List<Notification> itemList) {
