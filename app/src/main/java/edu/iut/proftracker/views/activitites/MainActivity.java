@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         Button fr = findViewById(R.id.buttonFrancais);
 
 
-        String url = "https://rayanoutili.github.io/proftrackerjson/data.json";
+        String url = "https://rayanoutili.github.io/proftrackerjson/data2.json";
         new HttpAsyncGet<>(url, Professeur.class, this, new ProgressDialog(MainActivity.this) );
 
         com.google.android.material.bottomnavigation.BottomNavigationView menu = findViewById(R.id.menu);
