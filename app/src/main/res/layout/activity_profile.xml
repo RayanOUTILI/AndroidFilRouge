@@ -50,6 +50,7 @@
                     android:background="@color/black"
                     />
                 <TextView
+                    android:id="@+id/localisation"
                     android:layout_width="300sp"
                     android:layout_height="20sp"
                     app:layout_constraintTop_toTopOf="@id/logoposition"
@@ -131,6 +132,15 @@
                     android:text="@string/exemple3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/permiereMatiere" />
+
+                <ListView
+                    android:layout_width="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listeViewCommentaire"
+                    android:orientation="vertical">
+                </ListView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
