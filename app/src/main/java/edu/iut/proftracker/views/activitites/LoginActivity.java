@@ -20,6 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import edu.iut.proftracker.R;
 
@@ -27,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private Intent registerIntent, mainIntent;
     private FirebaseAuth firebaseAuth;
+    private FirebaseFirestore firebaseFirestore;
 
     @Override
     public void onStart() {
@@ -43,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         this.firebaseAuth = FirebaseAuth.getInstance();
+        this.firebaseFirestore = FirebaseFirestore.getInstance();
     
         Button loginButton = findViewById(R.id.loginButton);
         EditText usernameTextField = findViewById(R.id.usernameInputField);
@@ -76,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else {
                         login(usernameTextField.getText().toString(), passwordTextField.getText().toString());
-
                     }
                 }
         );
@@ -85,11 +87,40 @@ public class LoginActivity extends AppCompatActivity {
 
     private void login(String username, String password) {
 
+        firebaseFirestore.collection("utilisateurs")
+                .get()
+                .addOnCompleteListener(
+                    task -> {
+                        if(task.isSuccessful()) {
+                            for(QueryDocumentSnapshot documentSnapshot : task.getResult()) {
+                                if(documentSnapshot.get("username").equals(username)) {
+                                     String emailFromUsername = documentSnapshot.get("email").toString();
+                                     signInWithEmailAndPassword(emailFromUsername, password);
+                                }
+                            }
+                        }
+                    }
+                );
+    }
 
+    private void signInWithEmailAndPassword(String email, String password) {
+
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(
+                    task -> {
+                        if(task.isSuccessful()) {
+                            mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(mainIntent);
+                        }
+                        else {
+                            loginError();
+                        }
+                    }
+            );
     }
 
     public void fieldError(EditText textField) {
-        // TODO Faire en sorte de surligner l'input en rouge pour signaler l'erreur
+
     }
 
     public void loginError() {
