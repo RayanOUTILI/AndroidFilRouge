@@ -21,4 +21,5 @@
     <string name="username">Nom de l\'utilisateur</string>
     <string name="nom_de_l_utilisateur">Nom de l\'utilisateur</string>
     <string name="key">key</string>
+    <string name="noteetoile">"Note moyenne : ⭐ "</string>
 </resources>
