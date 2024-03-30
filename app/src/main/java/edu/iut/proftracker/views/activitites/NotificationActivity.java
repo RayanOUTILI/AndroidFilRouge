@@ -1,7 +1,10 @@
 package edu.iut.proftracker.views.activitites;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +33,16 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
         String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         this.displayedNotifications = Notification.getNotification(username, this);
+
+        ImageView croix = findViewById(R.id.back);
+        croix.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(NotificationActivity.this, MainActivity.class);
+                intent.putExtra("key",1);
+                startActivity(intent);
+            }
+        });
     }
 
     public void onPostExecute(List<Notification> itemList) {

@@ -38,14 +38,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     private ProfesseurAdapter adapter;
     private Intent professorIntent, loginIntent;
     private FirebaseUser firebaseUser;
-    ActivityMainBinding binding;
-
     private Button buttonFrancais;
-
     private Button buttonMathematiques;
-
     private Button buttonHistoire;
-
     private Button buttonInformatique;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         );
 
 
-        TextView textView = findViewById(R.id.title);
         Button fr = findViewById(R.id.buttonFrancais);
 
 
