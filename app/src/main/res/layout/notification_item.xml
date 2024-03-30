@@ -8,9 +8,10 @@
         android:id="@+id/image_profile"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/template"
         android:layout_gravity="center_vertical"
-        android:layout_marginEnd="16dp"/>
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/logo"
+        />
 
     <TextView
         android:id="@+id/text_message"

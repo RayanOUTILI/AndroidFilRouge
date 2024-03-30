@@ -25,4 +25,5 @@
         <item>25</item>
         <item>45</item>
     </array>
+    <string name="noteetoile">"Note moyenne : ⭐ "</string>
 </resources>

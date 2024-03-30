@@ -29,8 +29,8 @@ public class ProfesseurProfilActivity extends AppCompatActivity {
             ImageView imageView = findViewById(R.id.pppicture);
             imageView.setImageResource(R.drawable.student);
 
-            TextView textView = findViewById(R.id.nomProfile);
-            textView.setText("Vous êtes connecté en tant que : " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
+            TextView nom = findViewById(R.id.nomProfile);
+            nom.setText("Vous êtes connecté en tant que : " + FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
             TextView localisation = findViewById(R.id.localisation);
             localisation.setText("");
@@ -39,11 +39,14 @@ public class ProfesseurProfilActivity extends AppCompatActivity {
         else{
             ImageView imageView = findViewById(R.id.pppicture);
 
-            TextView textView = findViewById(R.id.nomProfile);
-            textView.setText(professeurConnecte.getNom());
+            TextView nom = findViewById(R.id.nomProfile);
+            nom.setText(professeurConnecte.getNom());
 
             String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
             Picasso.get().load(professeurConnecte.getImage()).into(imageView);
+
+            TextView localisation = findViewById(R.id.localisation);
+            localisation.setText(professeurConnecte.getLieu());
 
             String nomEleve = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
         }
