@@ -58,6 +58,10 @@ public class Professeur implements Parcelable {
         return prix + " €/h";
     }
 
+    public float getPrixFloat(){
+        return prix;
+    }
+
     public void setPrix(float prix) {
         this.prix = prix;
     }

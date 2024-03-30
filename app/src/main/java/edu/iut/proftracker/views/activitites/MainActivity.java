@@ -17,12 +17,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.android.material.slider.RangeSlider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import edu.iut.proftracker.R;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     private FirebaseUser firebaseUser;
     private Button buttonFrancais, buttonMathematiques, buttonHistoire, buttonInformatique;
     private final boolean[] isActivatedButton = {false,false,false,false};
+    private RangeSlider rangeSlider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +117,25 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         setButtonOnClickListener(buttonMathematiques, "Mathématiques", 1);
         setButtonOnClickListener(buttonHistoire, "Histoire", 2);
         setButtonOnClickListener(buttonInformatique, "Informatique", 3);
+
+        rangeSlider = findViewById(R.id.rangeSlider);
+
+        rangeSlider.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
+            @Override
+            public void onStartTrackingTouch(RangeSlider slider) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(RangeSlider slider) {
+            }
+        });
+
+        rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener() {
+            @Override
+            public void onValueChange(RangeSlider slider, float value, boolean fromUser) {
+                filterProsseursByPrix(slider.getValues().get(0),slider.getValues().get(1));
+            }
+        });
     }
 
     private void setButtonOnClickListener(Button button, String matiere, int indice) {
@@ -152,7 +174,21 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     private void filterProfesseursByMatiere(String matiere) {
         List<Professeur> filteredProfesseurs = new ArrayList<>();
         for (Professeur professeur : professeurList) {
-            if (professeur.getMatieres().contains(matiere)) {
+            if (professeur.getMatieres().contains(matiere)
+                    && rangeSlider.getValues().get(0) <= professeur.getPrixFloat()
+                    && professeur.getPrixFloat() <= rangeSlider.getValues().get(1)) {
+                filteredProfesseurs.add(professeur);
+            }
+        }
+        displayedprofesseur.clear();
+        displayedprofesseur.addAll(filteredProfesseurs);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void filterProsseursByPrix(float prix1, float prix2){
+        List<Professeur> filteredProfesseurs = new ArrayList<>();
+        for (Professeur professeur : professeurList) {
+            if (prix1 <= professeur.getPrixFloat()  && professeur.getPrixFloat() <= prix2) {
                 filteredProfesseurs.add(professeur);
             }
         }
@@ -165,7 +201,10 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         displayedprofesseur.clear();
         List<Professeur> filteredProfesseurs = new ArrayList<>();
         for (Professeur professeur : professeurList) {
+            if (rangeSlider.getValues().get(0) <= professeur.getPrixFloat()
+                    && professeur.getPrixFloat() <= rangeSlider.getValues().get(1)) {
                 filteredProfesseurs.add(professeur);
+            }
         }
         displayedprofesseur.clear();
         displayedprofesseur.addAll(filteredProfesseurs);
