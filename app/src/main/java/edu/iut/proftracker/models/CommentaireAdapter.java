@@ -44,7 +44,12 @@ public class CommentaireAdapter extends BaseAdapter {
         TextView name = layoutItem.findViewById(R.id.text_message);
 
         //(3) : Mise à jour des valeurs
-        String message = "Note : " + items.get(position).getNote() + "\n" + items.get(position).getAuteur() + " a commenté : " + items.get(position).getContenu();
+        String message = "";
+        int compteur = 0;
+        for(Commentaire c : items){
+            message += "Note : " + items.get(compteur).getNote() + "\n" + items.get(compteur).getAuteur() + " a commenté : " + items.get(compteur).getContenu()+"\n\n";
+            compteur++;
+        }
         name.setText(message);
 
         //(4) écouteur sur chaque élément de l'adapter

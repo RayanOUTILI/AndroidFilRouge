@@ -11,6 +11,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 import edu.iut.proftracker.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import edu.iut.proftracker.controllers.Clickable;
@@ -38,10 +40,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     private ProfesseurAdapter adapter;
     private Intent professorIntent, loginIntent;
     private FirebaseUser firebaseUser;
-    private Button buttonFrancais;
-    private Button buttonMathematiques;
-    private Button buttonHistoire;
-    private Button buttonInformatique;
+    private Button buttonFrancais, buttonMathematiques, buttonHistoire, buttonInformatique;
+    private final boolean[] isActivatedButton = {false,false,false,false};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,27 +110,25 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         buttonHistoire = findViewById(R.id.buttonHistoire);
         buttonInformatique = findViewById(R.id.buttonInformatique);
 
-        buttonFrancais.setOnClickListener(view -> {
-            filterProfesseursByMatiere("Français");
-            resetButtonsColors();
-            buttonFrancais.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-        });
-        buttonMathematiques.setOnClickListener(view -> {
-            filterProfesseursByMatiere("Mathématiques");
-            resetButtonsColors();
-            buttonMathematiques.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-        });
-        buttonHistoire.setOnClickListener(view -> {
-            filterProfesseursByMatiere("Histoire");
-            resetButtonsColors();
-            buttonHistoire.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-        });
-        buttonInformatique.setOnClickListener(view -> {
-            filterProfesseursByMatiere("Informatique");
-            resetButtonsColors();
-            buttonInformatique.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-        });
+        setButtonOnClickListener(buttonFrancais, "Français", 0);
+        setButtonOnClickListener(buttonMathematiques, "Mathématiques", 1);
+        setButtonOnClickListener(buttonHistoire, "Histoire", 2);
+        setButtonOnClickListener(buttonInformatique, "Informatique", 3);
+    }
 
+    private void setButtonOnClickListener(Button button, String matiere, int indice) {
+        button.setOnClickListener(view -> {
+            if (!isActivatedButton[indice]) {
+                filterProfesseursByMatiere(matiere);
+                resetButtonsColors();
+                button.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                isActivatedButton[indice] = true;
+            } else {
+                filterProfesseursReset();
+                resetButtonsColors();
+                isActivatedButton[indice] = false;
+            }
+        });
     }
 
     public void resetButtonsColors() {
@@ -156,6 +155,17 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
             if (professeur.getMatieres().contains(matiere)) {
                 filteredProfesseurs.add(professeur);
             }
+        }
+        displayedprofesseur.clear();
+        displayedprofesseur.addAll(filteredProfesseurs);
+        adapter.notifyDataSetChanged();
+    }
+
+    private void filterProfesseursReset(){
+        displayedprofesseur.clear();
+        List<Professeur> filteredProfesseurs = new ArrayList<>();
+        for (Professeur professeur : professeurList) {
+                filteredProfesseurs.add(professeur);
         }
         displayedprofesseur.clear();
         displayedprofesseur.addAll(filteredProfesseurs);
