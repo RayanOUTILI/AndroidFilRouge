@@ -8,4 +8,5 @@
     <color name="buttonColor">#005072</color>
     <color name="loginAndRegisterInputColor">#3C6AF3</color>
     <color name="red">#FF0000</color>
+    <color name="cyan">#005173</color>
 </resources>

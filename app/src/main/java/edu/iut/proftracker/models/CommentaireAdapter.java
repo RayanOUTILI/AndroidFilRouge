@@ -45,15 +45,7 @@ public class CommentaireAdapter extends BaseAdapter {
         TextView note = callBackActivity.findViewById(R.id.noteetoile);
 
         //(3) : Mise à jour des valeurs
-        String message = "";
-        int compteur = 0;
-        for(Commentaire c : items){
-            message += "Note : " + items.get(compteur).getNote() + "\n" + items.get(compteur).getAuteur() + " a commenté : " + items.get(compteur).getContenu();
-            compteur++;
-            if(items.size() != compteur){
-                message += "\n\n";
-            }
-        }
+        String message = "Note : " + items.get(position).getNote() + "\n" + items.get(position).getAuteur() + " a commenté : " + items.get(position).getContenu();
         float noteMsg = items.get(position).getNote();
         note.setText("Note moyenne : " + noteMsg + " ⭐");
         name.setText(message);
