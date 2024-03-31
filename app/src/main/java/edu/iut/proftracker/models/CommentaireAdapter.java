@@ -54,7 +54,7 @@ public class CommentaireAdapter extends BaseAdapter {
                 message += "\n\n";
             }
         }
-        float noteMsg = items.get(position).getNote();
+        float noteMsg = items.get(position).getNoteMoyenne(items);
         note.setText("Note moyenne : " + noteMsg + " ⭐");
         name.setText(message);
 
