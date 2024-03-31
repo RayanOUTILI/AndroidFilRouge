@@ -73,7 +73,6 @@ public class ProfileActivity extends AppCompatActivity {
         adapter = new CommentaireAdapter(professeur.getCommentaires(), this);
         ListView listView = findViewById(R.id.listeViewCommentaire);
         listView.setAdapter(adapter);
-
     }
 
     public Context getContext() {

@@ -30,13 +30,14 @@
 
                 <ImageView
                     android:id="@+id/logo"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_margin="20dp"
                     android:contentDescription="@string/logo"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:background="@color/black"/>
+                    android:background="@drawable/logo"
+                    />
 
                 <ImageView
                     android:layout_width="20dp"
@@ -47,7 +48,7 @@
                     android:layout_marginLeft="30dp"
                     android:id="@+id/logoposition"
                     android:contentDescription="@string/position"
-                    android:background="@color/black"
+                    android:background="@drawable/placeholder"
                     />
                 <TextView
                     android:id="@+id/localisation"
@@ -69,19 +70,13 @@
                     android:text="@string/exemple2"
                     android:textSize="40sp"
                     />
-                <Button
-                    android:layout_width="120dp"
-                    android:layout_height="60sp"
-                    android:id="@+id/contacter"
-                    app:layout_constraintStart_toEndOf="@id/nomProfile"
-                    app:layout_constraintTop_toTopOf="@id/nomProfile"
-                    android:text="@string/contacter"/>
 
                 <TextView
                     android:id="@+id/permiereMatiere"
                     android:layout_width="100dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="10dp"
+                    style="@style/TextAppearance.Material3.BodyLarge"
                     android:textAlignment="center"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/nomProfile"
@@ -91,7 +86,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/dot_24"
+                    android:background="@drawable/livre_ouvert_fill"
                     app:layout_constraintEnd_toStartOf="@+id/deuxiemeMatiere"
                     app:layout_constraintStart_toEndOf="@+id/permiereMatiere"
                     app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere" />
@@ -99,7 +94,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/dot_24"
+                    android:background="@drawable/livre_ouvert_fill"
                     app:layout_constraintEnd_toStartOf="@+id/troisiemeMatiere"
                     app:layout_constraintStart_toEndOf="@+id/deuxiemeMatiere"
                     app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere" />
@@ -108,6 +103,7 @@
                     android:id="@+id/deuxiemeMatiere"
                     android:layout_width="100dp"
                     android:layout_height="20dp"
+                    style="@style/TextAppearance.Material3.BodyLarge"
                     app:layout_constraintStart_toEndOf="@+id/permiereMatiere"
                     app:layout_constraintEnd_toStartOf="@id/troisiemeMatiere"
                     app:layout_constraintTop_toTopOf="@+id/permiereMatiere"
@@ -119,6 +115,7 @@
                     android:id="@+id/troisiemeMatiere"
                     android:layout_width="100dp"
                     android:layout_height="20dp"
+                    style="@style/TextAppearance.Material3.BodyLarge"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textAlignment="center"
                     app:layout_constraintStart_toEndOf="@+id/deuxiemeMatiere"
@@ -126,21 +123,43 @@
 
                 <TextView
                     android:id="@+id/textView4"
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
-                    android:layout_height="70sp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:textSize="16sp"
                     android:text="@string/exemple3"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/permiereMatiere" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/noteetoile"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView4"
+                    android:layout_margin="10dp"
+                    android:text="@string/noteetoile"
+                    android:textSize="20sp"
+                    />
+
                 <ListView
                     android:layout_width="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@+id/textView4"
+                    app:layout_constraintTop_toBottomOf="@+id/noteetoile"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/listeViewCommentaire"
                     android:orientation="vertical">
                 </ListView>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_margin="10dp"
+                    android:id="@+id/contacter"
+                    app:layout_constraintStart_toStartOf="@id/listeViewCommentaire"
+                    app:layout_constraintTop_toBottomOf="@id/listeViewCommentaire"
+                    android:text="@string/contacter"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

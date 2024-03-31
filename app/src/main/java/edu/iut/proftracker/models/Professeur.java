@@ -58,6 +58,10 @@ public class Professeur implements Parcelable {
         return prix + " €/h";
     }
 
+    public float getPrixFloat() {
+        return prix;
+    }
+
     public void setPrix(float prix) {
         this.prix = prix;
     }
@@ -102,11 +106,12 @@ public class Professeur implements Parcelable {
         this.commentaires = commentaires;
     }
 
-    //on calcule la note moyenne du professeur
+    // on calcule la note moyenne du professeur
     public float getNote() {
         float note = 0;
         for (Commentaire commentaire : commentaires) {
             note += commentaire.getNote();
+            System.out.println(note);
         }
         return note / commentaires.size();
     }

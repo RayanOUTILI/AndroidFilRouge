@@ -42,9 +42,20 @@ public class CommentaireAdapter extends BaseAdapter {
 
         //(2) : Récupération des éléments
         TextView name = layoutItem.findViewById(R.id.text_message);
+        TextView note = callBackActivity.findViewById(R.id.noteetoile);
 
         //(3) : Mise à jour des valeurs
-        String message = "Note : " + items.get(position).getNote() + "\n" + items.get(position).getAuteur() + " a commenté : " + items.get(position).getContenu();
+        String message = "";
+        int compteur = 0;
+        for(Commentaire c : items){
+            message += "Note : " + items.get(compteur).getNote() + "\n" + items.get(compteur).getAuteur() + " a commenté : " + items.get(compteur).getContenu();
+            compteur++;
+            if(items.size() != compteur){
+                message += "\n\n";
+            }
+        }
+        float noteMsg = items.get(position).getNoteMoyenne(items);
+        note.setText("Note moyenne : " + noteMsg + " ⭐");
         name.setText(message);
 
         //(4) écouteur sur chaque élément de l'adapter
