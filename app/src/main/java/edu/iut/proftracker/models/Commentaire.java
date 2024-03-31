@@ -3,6 +3,9 @@ package edu.iut.proftracker.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Commentaire implements Parcelable {
     private String auteur;
     private String contenu;
@@ -56,6 +59,16 @@ public class Commentaire implements Parcelable {
         return note;
     }
 
+    // on calcule la note moyenne du professeur
+    public float getNoteMoyenne(List<Commentaire> commentaires) {
+        float note = 0;
+        for (Commentaire commentaire : commentaires) {
+            note += commentaire.getNote();
+            System.out.println(note);
+        }
+        return note / commentaires.size();
+    }
+
     public void setNote(float note) {
         this.note = note;
     }
@@ -71,5 +84,13 @@ public class Commentaire implements Parcelable {
         dest.writeString(contenu);
         dest.writeFloat(note);
     }
-}
 
+    @Override
+    public String toString() {
+        return "Commentaire{" +
+                "auteur='" + auteur + '\'' +
+                ", contenu='" + contenu + '\'' +
+                ", note=" + note +
+                '}';
+    }
+}
