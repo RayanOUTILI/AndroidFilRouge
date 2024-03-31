@@ -5,14 +5,14 @@
         android:toXDelta="0"
         android:fromYDelta="200"
         android:toYDelta="0"
-        android:duration="1500"
+        android:duration="350"
         android:fillAfter="true"
         android:interpolator="@android:anim/accelerate_interpolator"
         />
     <alpha
         android:fromAlpha="0.0"
         android:toAlpha="1.0"
-        android:duration="1000"
+        android:duration="100"
         android:fillAfter="true"
         />
     <scale
@@ -22,7 +22,7 @@
         android:toYScale="1.0"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:duration="1250"
+        android:duration="350"
         android:fillAfter="true"
         />
 

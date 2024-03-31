@@ -47,15 +47,13 @@ public class ForgottenPasswordActivity extends AppCompatActivity {
                                 if(task.isSuccessful()){
                                     email.setText("");
                                     progressDialog.setMessage("Email bien envoyé, veuillez vérifier votre boite mail.");
-                                    progressDialog.show();
-                                    progressDialog.dismiss();
                                 }
                                 else{
                                     progressDialog.setMessage("Erreur lors de l'envoi de l'email.");
-                                    progressDialog.show();
-                                    progressDialog.dismiss();
 
                                 }
+                                progressDialog.show();
+                                progressDialog.dismiss();
                             });
                 }
         );

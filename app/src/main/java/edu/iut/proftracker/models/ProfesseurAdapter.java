@@ -1,8 +1,10 @@
 package edu.iut.proftracker.models;
 
+import android.animation.ObjectAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -55,9 +57,15 @@ public class ProfesseurAdapter extends BaseAdapter {
 
         //(3) : Mise à jour des valeurs
         name.setText(items.get(position).getNom());
+
         Picasso.get().load(items.get(position).getImage()).into(picture);
         ratingBar.setRating(items.get(position).getNote());
         prix.setText(items.get(position).getPrix());
+
+        ObjectAnimator ratingBarAnimator = ObjectAnimator.ofFloat(ratingBar, "rating", 0, items.get(position).getNote());
+        ratingBarAnimator.setDuration(750);
+        ratingBarAnimator.start();
+
         ArrayList<String> listMatieres = items.get(position).getMatieres();
         StringBuilder matieresString = new StringBuilder();
         listMatieres.forEach(item -> {

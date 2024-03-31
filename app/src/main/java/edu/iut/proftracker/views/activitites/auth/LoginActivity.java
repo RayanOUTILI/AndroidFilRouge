@@ -1,14 +1,18 @@
 package edu.iut.proftracker.views.activitites.auth;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Bundle;
 import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +28,10 @@ public class LoginActivity extends AppCompatActivity {
     private Intent registerIntent, mainIntent, forgottenPasswordIntent;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
+    private Button loginButton;
+    private EditText usernameTextField, passwordTextField;
+    private TextView title, registerLink, forgottenPassword;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,19 +40,17 @@ public class LoginActivity extends AppCompatActivity {
         this.firebaseAuth = FirebaseAuth.getInstance();
         this.firebaseFirestore = FirebaseFirestore.getInstance();
     
-        Button loginButton = findViewById(R.id.loginButton);
-        EditText usernameTextField = findViewById(R.id.usernameInputField);
-        EditText passwordTextField = findViewById(R.id.passwordInputField);
+        this.loginButton = findViewById(R.id.loginButton);
+        this.usernameTextField = findViewById(R.id.usernameInputField);
+        this.passwordTextField = findViewById(R.id.passwordInputField);
 
-        TextView registerLink = findViewById(R.id.noAccount);
-        TextView forgottenPassword = findViewById(R.id.forgottenPassword);
+        this.title = findViewById(R.id.login);
+        this.registerLink = findViewById(R.id.noAccount);
+        this.forgottenPassword = findViewById(R.id.forgottenPassword);
 
-        Button animation = findViewById(R.id.launchAnim);
-        animation.setOnClickListener(
-                click -> {
-                    animation();
-                }
-        );
+        this.progressBar = findViewById(R.id.progressBar);
+
+
 
         forgottenPassword.setOnClickListener(
                 click -> {
@@ -98,7 +104,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signInWithEmailAndPassword(String email, String password) {
-
+        clearAllViews();
+        animation();
         firebaseAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(
                     task -> {
@@ -138,18 +145,38 @@ public class LoginActivity extends AppCompatActivity {
        }
     }
 
-    public void animation() {
+    private void animation() {
         ImageView lib1 = findViewById(R.id.library);
         ImageView lib2 = findViewById(R.id.library2);
-
         ImageView book = findViewById(R.id.book);
-        Animation anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.book_animation);
-        book.startAnimation(anim);
+        ImageView logo = findViewById(R.id.logo);
 
-        Animation anim2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.lib_animation);
-        lib1.startAnimation(anim2);
+        lib1.setVisibility(ImageView.VISIBLE);
+        lib2.setVisibility(ImageView.VISIBLE);
+        book.setVisibility(ImageView.VISIBLE);
+        logo.setVisibility(ImageView.VISIBLE);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
 
-        Animation anim3 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.lib2_animation);
-        lib2.startAnimation(anim3);
+        Animation bookAnim = AnimationUtils.loadAnimation(this, R.anim.book_animation);
+        Animation lib1Anim = AnimationUtils.loadAnimation(this, R.anim.lib_animation);
+        Animation lib2Anim = AnimationUtils.loadAnimation(this, R.anim.lib2_animation);
+        Animation logoAnim = AnimationUtils.loadAnimation(this, R.anim.logo_animation);
+
+        lib1.startAnimation(lib1Anim);
+        lib2.startAnimation(lib2Anim);
+        book.startAnimation(bookAnim);
+        logo.startAnimation(logoAnim);
     }
+
+    private void clearAllViews() {
+        this.title.setVisibility(TextView.INVISIBLE);
+        this.usernameTextField.setVisibility(EditText.INVISIBLE);
+        this.passwordTextField.setVisibility(EditText.INVISIBLE);
+        this.loginButton.setVisibility(Button.INVISIBLE);
+        this.registerLink.setVisibility(TextView.INVISIBLE);
+        this.forgottenPassword.setVisibility(TextView.INVISIBLE);
+    }
+
+
 }
+

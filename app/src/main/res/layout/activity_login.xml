@@ -17,26 +17,17 @@
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <Button
-        android:id="@+id/launchAnim"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Launch anim"
-        app:layout_constraintTop_toBottomOf="@id/login"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-
-        />
 
     <ImageView
         android:id="@+id/library"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="220dp"
+        android:layout_marginBottom="350dp"
+        android:layout_marginEnd="30dp"
         android:src="@drawable/bibliotheque"
         android:scaleX="-1"
-        android:visibility="visible"
-        android:rotation="20"
+        android:visibility="invisible"
+        android:rotation="15"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="@id/book"
         app:layout_constraintRight_toRightOf="parent"
@@ -45,10 +36,10 @@
 
     <ImageView
         android:id="@+id/book"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:src="@drawable/livre"
-        android:visibility="visible"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/loginButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -58,14 +49,39 @@
         android:id="@+id/library2"
         android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="220dp"
+        android:layout_marginBottom="350dp"
+        android:layout_marginStart="30dp"
         android:src="@drawable/bibliotheque"
-        android:visibility="visible"
-        android:rotation="-20"
+        android:visibility="invisible"
+        android:rotation="-15"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="@id/book"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_transparent_png"
+        android:visibility="invisible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        />
+
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:visibility="invisible"
+        app:layout_constraintTop_toBottomOf="@id/logo"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         />
 
 

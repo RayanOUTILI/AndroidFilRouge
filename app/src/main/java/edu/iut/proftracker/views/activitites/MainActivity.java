@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.slider.RangeSlider;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,13 +70,10 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         );
 
 
-        Button fr = findViewById(R.id.buttonFrancais);
-
-
         String url = "https://rayanoutili.github.io/proftrackerjson/data2.json";
         new HttpAsyncGet<>(url, Professeur.class, this, new ProgressDialog(MainActivity.this) );
 
-        com.google.android.material.bottomnavigation.BottomNavigationView menu = findViewById(R.id.menu);
+        BottomNavigationView menu = findViewById(R.id.menu);
         menu.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
