@@ -139,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                     if(isActivated){
                         unBoutonActif = true;
                         filterProfesseursByMatiere(matieres[compteur]);
+                        break;
                     }
                     compteur++;
                 }
@@ -152,14 +153,14 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     private void setButtonOnClickListener(Button button, String matiere, int indice) {
         button.setOnClickListener(view -> {
             if (!isActivatedButton[indice]) {
+                isActivatedButton[indice] = true;
                 filterProfesseursByMatiere(matiere);
                 resetButtonsColors();
                 button.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                isActivatedButton[indice] = true;
             } else {
+                isActivatedButton[indice] = false;
                 filterProfesseursReset();
                 resetButtonsColors();
-                isActivatedButton[indice] = false;
             }
         });
     }
@@ -196,20 +197,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         adapter.notifyDataSetChanged();
     }
 
-    private void filterProsseursByPrix(float prix1, float prix2){
-        List<Professeur> filteredProfesseurs = new ArrayList<>();
-        for (Professeur professeur : professeurList) {
-            if (prix1 <= professeur.getPrixFloat()  && professeur.getPrixFloat() <= prix2) {
-                filteredProfesseurs.add(professeur);
-            }
-        }
-        displayedprofesseur.clear();
-        displayedprofesseur.addAll(filteredProfesseurs);
-        adapter.notifyDataSetChanged();
-    }
-
     private void filterProfesseursReset(){
-        displayedprofesseur.clear();
         List<Professeur> filteredProfesseurs = new ArrayList<>();
         for (Professeur professeur : professeurList) {
             if (rangeSlider.getValues().get(0) <= professeur.getPrixFloat()
