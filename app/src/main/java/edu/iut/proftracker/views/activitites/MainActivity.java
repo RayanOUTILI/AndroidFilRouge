@@ -133,7 +133,19 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override
             public void onValueChange(RangeSlider slider, float value, boolean fromUser) {
-                filterProsseursByPrix(slider.getValues().get(0),slider.getValues().get(1));
+                String[] matieres = {"Français","Mathématiques","Histoire","Informatique"};
+                int compteur = 0;
+                boolean unBoutonActif = false;
+                for(boolean isActivated : isActivatedButton){
+                    if(isActivated){
+                        unBoutonActif = true;
+                        filterProfesseursByMatiere(matieres[compteur]);
+                    }
+                    compteur++;
+                }
+                if(!unBoutonActif){
+                    filterProfesseursReset();
+                }
             }
         });
     }
