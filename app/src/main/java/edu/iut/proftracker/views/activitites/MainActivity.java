@@ -30,6 +30,7 @@ import edu.iut.proftracker.controllers.PostExecuteActivity;
 import edu.iut.proftracker.databinding.ActivityMainBinding;
 import edu.iut.proftracker.models.Professeur;
 import edu.iut.proftracker.models.ProfesseurAdapter;
+import edu.iut.proftracker.views.activitites.auth.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements PostExecuteActivity<Professeur>, Clickable {
     private final String TAG = "AAAAAAAAAAAAAAAAAAAAAA";

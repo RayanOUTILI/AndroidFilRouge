@@ -1,4 +1,4 @@
-package edu.iut.proftracker.views.activitites;
+package edu.iut.proftracker.views.activitites.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.iut.proftracker.R;
+import edu.iut.proftracker.views.activitites.MainActivity;
+import edu.iut.proftracker.views.activitites.auth.LoginActivity;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -93,10 +95,21 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void fieldError(EditText textField) {
         switch(textField.getInputType()) {
+            // cas de l'email
+            case 32:
+                textField.setError("Email is required");
+                break;
+            // cas du mot de passe
+            case 129:
+                textField.setError("Password is required");
+                break;
+            // cas du username
             case 1:
+                textField.setError("Username is required");
                 break;
             default:
                 break;
+
         }
     }
 

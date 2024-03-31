@@ -1,4 +1,4 @@
-package edu.iut.proftracker.views.activitites;
+package edu.iut.proftracker.views.activitites.auth;
 
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -10,37 +10,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import edu.iut.proftracker.R;
+import edu.iut.proftracker.views.activitites.MainActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Intent registerIntent, mainIntent;
+    private Intent registerIntent, mainIntent, forgottenPasswordIntent;
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        if(currentUser != null) {
-            this.mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(this.mainIntent);
-        }
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +37,19 @@ public class LoginActivity extends AppCompatActivity {
         EditText passwordTextField = findViewById(R.id.passwordInputField);
 
         TextView registerLink = findViewById(R.id.noAccount);
+        TextView forgottenPassword = findViewById(R.id.forgottenPassword);
 
         Button animation = findViewById(R.id.launchAnim);
         animation.setOnClickListener(
                 click -> {
                     animation();
+                }
+        );
+
+        forgottenPassword.setOnClickListener(
+                click -> {
+                    this.forgottenPasswordIntent = new Intent(getApplicationContext(), ForgottenPasswordActivity.class);
+                    startActivity(forgottenPasswordIntent);
                 }
         );
 
@@ -97,6 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                             for(QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 if(documentSnapshot.get("username").equals(username)) {
                                      String emailFromUsername = documentSnapshot.get("email").toString();
+                                        System.out.println(emailFromUsername);
                                      signInWithEmailAndPassword(emailFromUsername, password);
                                 }
                             }
@@ -122,9 +114,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void fieldError(EditText textField) {
-        Drawable textFieldBackground = textField.getBackground();
-        if(textFieldBackground instanceof ShapeDrawable) {
-            ((ShapeDrawable) textFieldBackground).getPaint().setColor(getResources().getColor(R.color.red, getTheme()));
+        switch(textField.getInputType()) {
+            // cas du password
+            case 129:
+                textField.setError("Rentrez votre mot de passe");
+                break;
+            // cas du username
+            case 1:
+                textField.setError("Rentrez votre nom d'utilisateur");
+                break;
+            default:
+                break;
+
         }
     }
 
