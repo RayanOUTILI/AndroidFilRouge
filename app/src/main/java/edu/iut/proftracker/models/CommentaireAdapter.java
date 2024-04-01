@@ -78,6 +78,7 @@ public class CommentaireAdapter extends BaseAdapter {
      * @see android.widget.BaseAdapter#getView(int, android.view.View, android.view.ViewGroup)
      * @see android.view.View
      * @see android.view.ViewGroup
+     * @see android.widget.TextView
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

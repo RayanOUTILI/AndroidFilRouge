@@ -23,6 +23,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import edu.iut.proftracker.R;
 import edu.iut.proftracker.views.activitites.MainActivity;
 
+/** Classe LoginActivity permettant de gérer l'activité de connexion à l'application
+ *  
+ * @see androidx.appcompat.app.AppCompatActivity
+ */
 public class LoginActivity extends AppCompatActivity {
 
     private Intent registerIntent, mainIntent, forgottenPasswordIntent;
@@ -32,14 +36,35 @@ public class LoginActivity extends AppCompatActivity {
     private EditText usernameTextField, passwordTextField;
     private TextView title, registerLink, forgottenPassword;
     private ProgressBar progressBar;
+
+    /** Méthode onCreate permettant de créer l'activité de connexion à l'application
+     * 
+     * @param savedInstanceState : Instance de l'activité
+     * 
+     * @see android.os.Bundle
+     * @see android.content.Intent
+     * @see com.google.firebase.auth.FirebaseAuth
+     * @see com.google.firebase.firestore.FirebaseFirestore
+     * @see android.widget.Button
+     * @see android.widget.EditText
+     * @see android.widget.TextView
+     * @see android.widget.ProgressBar
+     * @see android.content.Intent
+     * @see java.lang.String
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Appel du constructeur de la super classe
         super.onCreate(savedInstanceState);
+
+        // Association de l'activité à son layout
         setContentView(R.layout.activity_login);
 
+        // Initialisation de l'instance de FirebaseAuth et de FirebaseFirestore
         this.firebaseAuth = FirebaseAuth.getInstance();
         this.firebaseFirestore = FirebaseFirestore.getInstance();
     
+        // Récupération des éléments du layout
         this.loginButton = findViewById(R.id.loginButton);
         this.usernameTextField = findViewById(R.id.usernameInputField);
         this.passwordTextField = findViewById(R.id.passwordInputField);
@@ -50,8 +75,7 @@ public class LoginActivity extends AppCompatActivity {
 
         this.progressBar = findViewById(R.id.progressBar);
 
-
-
+        // Association des actions aux éléments du layout
         forgottenPassword.setOnClickListener(
                 click -> {
                     this.forgottenPasswordIntent = new Intent(getApplicationContext(), ForgottenPasswordActivity.class);
@@ -84,6 +108,22 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    /** Méthode permettant de connecter un utilisateur à l'application
+     * 
+     * <p> A partir du nom d'utilisateur on verifie si l'utilisateur existe dans la base de données Firestore </p>
+     * <p> Si l'utilisateur existe, on récupère son email et on tente de le connecter à l'application </p>
+     * 
+     * @param username : Nom d'utilisateur
+     * @param password : Mot de passe
+     * 
+     * @see com.google.firebase.auth.FirebaseAuth
+     * @see com.google.firebase.firestore.FirebaseFirestore
+     * @see com.google.firebase.firestore.QueryDocumentSnapshot
+     * @see com.google.firebase.auth.FirebaseAuth#signInWithEmailAndPassword(String, String)
+     * @see android.content.Intent
+     * @see edu.iut.proftracker.views.activitites.MainActivity
+     * 
+     */
     private void login(String username, String password) {
 
         firebaseFirestore.collection("utilisateurs")
@@ -93,15 +133,30 @@ public class LoginActivity extends AppCompatActivity {
                         if(task.isSuccessful()) {
                             for(QueryDocumentSnapshot documentSnapshot : task.getResult()) {
                                 if(documentSnapshot.get("username").equals(username)) {
-                                     String emailFromUsername = documentSnapshot.get("email").toString();
-                                        System.out.println(emailFromUsername);
-                                     signInWithEmailAndPassword(emailFromUsername, password);
+                                    String emailFromUsername = documentSnapshot.get("email").toString();
+                                    signInWithEmailAndPassword(emailFromUsername, password);
                                 }
                             }
                         }
                     }
                 );
     }
+
+    /** Méthode permettant de connecter un utilisateur à l'application à partir de son email et de son mot de passe
+     * 
+     * <p> Après avoir récupéré l'email depuis la méthode login, on tente de connecter l'utilisateur à l'application </p>
+     * 
+     * <p> Si la connexion est réussie, on redirige l'utilisateur vers l'activité principale de l'application </p>
+     * <p> Sinon, on affiche un message d'erreur </p>
+     * @param email : Email
+     * @param password : Mot de passe
+     * 
+     * @see com.google.firebase.auth.FirebaseAuth
+     * @see com.google.firebase.auth.FirebaseAuth#signInWithEmailAndPassword(String, String)
+     * @see android.content.Intent
+     * @see edu.iut.proftracker.views.activitites.MainActivity
+     * 
+     */
 
     private void signInWithEmailAndPassword(String email, String password) {
         clearAllViews();
@@ -120,6 +175,15 @@ public class LoginActivity extends AppCompatActivity {
             );
     }
 
+    /** Méthode permettant de gérer les erreurs de champs
+     * 
+     * <p> En fonction du type de champ, on affiche un message d'erreur </p>
+     * 
+     * @param textField : Champ de texte
+     * 
+     * @see android.widget.EditText
+     *  
+     */
     public void fieldError(EditText textField) {
         switch(textField.getInputType()) {
             // cas du password
@@ -136,6 +200,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    /** Méthode permettant de gérer les erreurs de connexion
+     *  
+     */
     public void loginError() {
        Drawable textFieldBackground = findViewById(R.id.usernameInputField).getBackground();
        Drawable passwordFieldBackground = findViewById(R.id.passwordInputField).getBackground();
@@ -145,6 +212,17 @@ public class LoginActivity extends AppCompatActivity {
        }
     }
 
+    /** Méthode jouant l'animation de transition entre l'écran de connexion et l'écran principal de l'application
+     * 
+     * <p> On récupère les éléments du layout et on leur associe une animation </p>
+     * <p> On rend les éléments visibles </p>
+     * <p> On lance l'animation </p>
+     * 
+     * @see android.widget.ImageView
+     * @see android.widget.ProgressBar
+     * @see android.view.animation.Animation
+     * @see android.view.animation.AnimationUtils
+     */
     private void animation() {
         ImageView lib1 = findViewById(R.id.library);
         ImageView lib2 = findViewById(R.id.library2);
@@ -168,6 +246,13 @@ public class LoginActivity extends AppCompatActivity {
         logo.startAnimation(logoAnim);
     }
 
+    /** Méthode permettant de rendre invisible tous les éléments du layout
+     *  <p> On rend invisible les éléments du layout visibles au moment de la connexion dans le but de faire jouer l'animation apres </p>
+     * 
+     * @see android.widget.TextView
+     * @see android.widget.EditText
+     * @see android.widget.Button
+     */
     private void clearAllViews() {
         this.title.setVisibility(TextView.INVISIBLE);
         this.usernameTextField.setVisibility(EditText.INVISIBLE);

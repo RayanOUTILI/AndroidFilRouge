@@ -133,11 +133,17 @@ public class Notification {
 
     /** Méthode permettant de créer une notification dans la base de données
      * 
-     * @param professeur : 
-     * @param eleve
-     * @param lieu
-     * @param date
-     * @param matiere
+     * @param professeur : Professeur concerné par la notification (demandé pour le rendez-vous)
+     * @param eleve : Elève concerné par la notification (demandeur du rendez-vous)
+     * @param lieu : Lieu du rendez-vous (salle de classe)
+     * @param date : Date du rendez-vous (format : jj/mm/aaaa)
+     * @param matiere : Matière du rendez-vous (cours demandé)
+     * 
+     * @see com.google.firebase.firestore.FirebaseFirestore
+     * @see com.google.android.gms.tasks.OnCompleteListener
+     * @see com.google.android.gms.tasks.Task
+     * @see edu.iut.proftracker.models.Notification
+     * 
      */
 
     public static void createNotification(String professeur, String eleve, String lieu, String date, String matiere) {
@@ -146,34 +152,52 @@ public class Notification {
 
         db.collection("notifications")
                 .add(notification)
-                .addOnCompleteListener(new OnCompleteListener() {
-                    @Override
-                    public void onComplete(Task task) {
+                .addOnCompleteListener(
+                    task -> {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "Notification ajoutée avec succès");
                         } else {
                             Log.e(TAG, "Erreur lors de l'ajout de la notification", task.getException());
                         }
-                    }
-                });
+                    });
     }
+
+    /** Méthode permettant de retourner le nom du professeur concerné par la notification
+     * @return String : Nom du professeur
+     */
 
     public String getProfesseur() {
         return professeur;
     }
 
+    /** Méthode permettant de retourner le nom de l'élève concerné par la notification
+     * 
+     * @return String : Nom de l'élève
+     */
     public String getEleve() {
         return eleve;
     }
 
+    /** Méthode permettant de retourner le lieu du rendez-vous
+     * 
+     * @return String : Lieu du rendez-vous
+     */
     public String getLieu() {
         return lieu;
     }
 
+    /** Méthode permettant de retourner la date du rendez-vous
+     * 
+     * @return String : Date du rendez-vous
+     */
     public String getDate() {
         return date;
     }
 
+    /** Méthode permettant de retourner la matière du rendez-vous
+     * 
+     * @return String : Matière du rendez-vous
+     */
     public String getMatiere() {
         return matiere;
     }

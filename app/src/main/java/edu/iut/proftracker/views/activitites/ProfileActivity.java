@@ -23,22 +23,48 @@ import edu.iut.proftracker.models.CommentaireAdapter;
 import edu.iut.proftracker.models.Notification;
 import edu.iut.proftracker.models.Professeur;
 
+/** Classe ProfileActivity permettant de gérer l'activité de profil de l'application ProfTracker
+ *  
+ * @see androidx.appcompat.app.AppCompatActivity
+ */
 public class ProfileActivity extends AppCompatActivity {
 
     private FirebaseUser firebaseUtilisateur;
 
     private CommentaireAdapter adapter;
 
+    /** Méthode onCreate permettant de créer l'activité de profil de l'application ProfTracker
+     * 
+     * <p> On initialise les éléments de l'activité tels que les champs de texte, les boutons et les images </p>
+     * <p> On récupère les informations du professeur et on les affiche dans l'activité </p>
+     * <p> On affiche les commentaires du professeur dans l'activité </p>
+     * 
+     * @param savedInstanceState : Instance de l'activité
+     * 
+     * @see android.os.Bundle
+     * @see com.google.firebase.auth.FirebaseAuth
+     * @see com.google.firebase.auth.FirebaseUser
+     * @see com.squareup.picasso.Picasso
+     * @see java.text.SimpleDateFormat
+     * @see java.util.ArrayList
+     * @see java.util.Date
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Appel du constructeur de la super classe
         super.onCreate(savedInstanceState);
+
+        // Association de l'activité à son layout et initialisation de l'activité
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
 
+        // Recupération du professeur depuis l'intent
         Professeur professeur = getIntent().getExtras().getParcelable(getString(R.string.key));
         boolean estLui = getIntent().getExtras().getBoolean("estLui");
 
+        // Initialisation des éléments de l'activité
         if (professeur == null) {
+            // Si le professeur est null, on affiche les informations de l'élève
             ImageView imageView = findViewById(R.id.profilepicture);
             imageView.setImageResource(R.drawable.student);
 
@@ -48,6 +74,7 @@ public class ProfileActivity extends AppCompatActivity {
 
             nom.setTextSize(20);
 
+            // On cache les informations du professeur puisque l'utilisateur est un élève
             TextView localisation = findViewById(R.id.localisation);
             localisation.setText("");
 
@@ -72,13 +99,18 @@ public class ProfileActivity extends AppCompatActivity {
 
         } else {
 
+            // Si le professeur n'est pas null, on affiche ses informations
             ImageView imageView = findViewById(R.id.profilepicture);
             TextView textView = findViewById(R.id.nomProfile);
             textView.setText(professeur.getNom());
 
+            // Récupérer le nom de l'utilisateur connecté
             String nom = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+
+            // Si le nom de l'utilisateur connecté est le même que le nom du professeur, on affiche les informations de l'utilisateur connecté
             Picasso.get().load(professeur.getImage()).into(imageView);
 
+            
             TextView premierMatiere = findViewById(R.id.permiereMatiere);
             TextView deuxiemeMatiere = findViewById(R.id.deuxiemeMatiere);
             TextView troisiemeMatiere = findViewById(R.id.troisiemeMatiere);
@@ -117,6 +149,10 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
+    /** Méthode getContext permettant de récupérer le contexte de l'activité ProfileActivity
+     * 
+     * @return this : le contexte de l'activité ProfileActivity
+     */
     public Context getContext() {
         return this;
     }
