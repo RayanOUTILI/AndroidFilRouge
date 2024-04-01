@@ -31,8 +31,8 @@ public class NotificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
-        String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-        this.displayedNotifications = Notification.getNotification(username, this);
+        String nomProfile = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        this.displayedNotifications = Notification.getNotification(nomProfile, this);
 
         ImageView croix = findViewById(R.id.back);
         croix.setOnClickListener(new View.OnClickListener() {

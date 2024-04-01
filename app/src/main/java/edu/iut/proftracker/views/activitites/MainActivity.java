@@ -134,28 +134,28 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 for(boolean actif : boutonActive){
                     if(actif){
                         unBoutonActif = true;
-                        filterProfesseursByMatiere(matieres[compteur]);
+                        filterProfesseursParMatiere(matieres[compteur]);
                         break;
                     }
                     compteur++;
                 }
                 if(!unBoutonActif){
-                    filterProfesseursReset();
+                    filterProfesseursReinitialiser();
                 }
             }
         });
     }
 
-    private void setButtonOnClickListener(Button button, String matiere, int indice) {
-        button.setOnClickListener(view -> {
+    private void setButtonOnClickListener(Button bouton, String matiere, int indice) {
+        bouton.setOnClickListener(view -> {
             if (!boutonActive[indice]) {
                 boutonActive[indice] = true;
-                filterProfesseursByMatiere(matiere);
+                filterProfesseursParMatiere(matiere);
                 resetButtonsColors();
-                button.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                bouton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             } else {
                 boutonActive[indice] = false;
-                filterProfesseursReset();
+                filterProfesseursReinitialiser();
                 resetButtonsColors();
             }
             for(int i = 0; i < boutonActive.length; i++){
@@ -184,30 +184,30 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     }
 
     // Filtrer les professeurs par matières
-    private void filterProfesseursByMatiere(String matiere) {
-        List<Professeur> filteredProfesseurs = new ArrayList<>();
+    private void filterProfesseursParMatiere(String matiere) {
+        List<Professeur> listeProfesseurFlitre = new ArrayList<>();
         for (Professeur professeur : listeProfesseur) {
             if (professeur.getMatieres().contains(matiere)
                     && rangeSlider.getValues().get(0) <= professeur.getPrixFloat()
                     && professeur.getPrixFloat() <= rangeSlider.getValues().get(1)) {
-                filteredProfesseurs.add(professeur);
+                listeProfesseurFlitre.add(professeur);
             }
         }
         listeProfesseurAffiche.clear();
-        listeProfesseurAffiche.addAll(filteredProfesseurs);
+        listeProfesseurAffiche.addAll(listeProfesseurFlitre);
         adapter.notifyDataSetChanged();
     }
 
-    private void filterProfesseursReset(){
-        List<Professeur> filteredProfesseurs = new ArrayList<>();
+    private void filterProfesseursReinitialiser(){
+        List<Professeur> listeProfesseurFlitre = new ArrayList<>();
         for (Professeur professeur : listeProfesseur) {
             if (rangeSlider.getValues().get(0) <= professeur.getPrixFloat()
                     && professeur.getPrixFloat() <= rangeSlider.getValues().get(1)) {
-                filteredProfesseurs.add(professeur);
+                listeProfesseurFlitre.add(professeur);
             }
         }
         listeProfesseurAffiche.clear();
-        listeProfesseurAffiche.addAll(filteredProfesseurs);
+        listeProfesseurAffiche.addAll(listeProfesseurFlitre);
         adapter.notifyDataSetChanged();
     }
 
@@ -217,8 +217,8 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     }
 
     @Override
-    public void onClicItem(int Index) {
-        int itemIndex = findIndexInList(Index); // Selection du proffesseur clické
+    public void onClicItem(int indice) {
+        int itemIndex = findIndexInList(indice); // Selection du proffesseur clické
         Log.d(TAG, String.valueOf(itemIndex));
         // Création et ajout dans l'intent du professeur
         Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
@@ -227,10 +227,10 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         startActivity(intent);
     }
 
-    private int findIndexInList(int index) {
-        Professeur characterToFind = listeProfesseur.get(index);
+    private int findIndexInList(int indice) {
+        Professeur professeurATrouve = listeProfesseur.get(indice);
         for (int i = 0; i < listeProfesseur.size(); i++) {
-            if (listeProfesseur.get(i).equals(characterToFind)) {
+            if (listeProfesseur.get(i).equals(professeurATrouve)) {
                 return i;
             }
         }

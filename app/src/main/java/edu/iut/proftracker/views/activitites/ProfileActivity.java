@@ -9,9 +9,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,7 +25,7 @@ import edu.iut.proftracker.models.Professeur;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private FirebaseUser firebaseUser;
+    private FirebaseUser firebaseUtilisateur;
 
     private CommentaireAdapter adapter;
 
@@ -57,8 +54,8 @@ public class ProfileActivity extends AppCompatActivity {
             TextView description = findViewById(R.id.textView4);
             description.setText("");
 
-            Button buttonContacter = findViewById(R.id.contacter);
-            buttonContacter.setEnabled(false);
+            Button boutonContacter = findViewById(R.id.contacter);
+            boutonContacter.setEnabled(false);
 
             ImageView image = findViewById(R.id.imageView);
             image.setVisibility(ImageView.GONE);
@@ -79,7 +76,7 @@ public class ProfileActivity extends AppCompatActivity {
             TextView textView = findViewById(R.id.nomProfile);
             textView.setText(professeur.getNom());
 
-            String name = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+            String nom = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
             Picasso.get().load(professeur.getImage()).into(imageView);
 
             TextView premierMatiere = findViewById(R.id.permiereMatiere);
@@ -97,20 +94,20 @@ public class ProfileActivity extends AppCompatActivity {
             deuxiemeMatiere.setText(matieres.get(1));
             troisiemeMatiere.setText(matieres.get(2));
 
-            Button buttonContacter = findViewById(R.id.contacter);
+            Button boutonContacter = findViewById(R.id.contacter);
             String nomEleve = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
             Date date = new Date();
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String dateFormatted = formatter.format(date);
+            String dateFormatte = formatter.format(date);
 
-            buttonContacter.setOnClickListener(v -> {
-                Notification.createNotification(professeur.getNom(), nomEleve, professeur.getLieu(), dateFormatted,
+            boutonContacter.setOnClickListener(v -> {
+                Notification.createNotification(professeur.getNom(), nomEleve, professeur.getLieu(), dateFormatte,
                         "Mathématiques");
             });
 
             if (estLui) {
-                buttonContacter.setEnabled(false);
+                boutonContacter.setEnabled(false);
             }
 
             // on créé l'adapter pour les commentaires
