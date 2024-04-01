@@ -111,7 +111,6 @@ public class Professeur implements Parcelable {
         float note = 0;
         for (Commentaire commentaire : commentaires) {
             note += commentaire.getNote();
-            System.out.println(note);
         }
         return note / commentaires.size();
     }

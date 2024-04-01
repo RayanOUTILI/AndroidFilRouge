@@ -162,6 +162,11 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 filterProfesseursReset();
                 resetButtonsColors();
             }
+            for(int i = 0; i < isActivatedButton.length; i++){
+                if(i != indice){
+                    isActivatedButton[i] = false;
+                }
+            }
         });
     }
 
