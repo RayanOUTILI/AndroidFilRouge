@@ -95,8 +95,9 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                     intent.putExtra("key",1);
                     startActivity(intent);
                 }else if(id == idProfile){
-                    Intent intent = new Intent(MainActivity.this, ProfesseurProfilActivity.class);
+                    Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                     intent.putExtra("key",professeurConnecte);
+                    intent.putExtra("estLui", true);
                     startActivity(intent);
                 }else{
                     System.out.println("DKNOW");
