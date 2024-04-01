@@ -131,19 +131,16 @@ public class Professeur implements Parcelable {
         dest.writeString(this.description);
         dest.writeTypedList(this.commentaires);
     }
-
     public static final Parcelable.Creator<Professeur> CREATOR = new Parcelable.Creator<Professeur>() {
         @Override
         public Professeur createFromParcel(Parcel source) {
             return new Professeur(source);
         }
-
         @Override
         public Professeur[] newArray(int size) {
             return new Professeur[size];
         }
     };
-
     public static Parcelable.Creator<Professeur> getCreator() {
         return CREATOR;
     }

@@ -11,10 +11,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -25,27 +23,24 @@ import com.google.firebase.auth.FirebaseUser;
 import edu.iut.proftracker.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import edu.iut.proftracker.controllers.Clickable;
 import edu.iut.proftracker.controllers.HttpAsyncGet;
 import edu.iut.proftracker.controllers.PostExecuteActivity;
-import edu.iut.proftracker.databinding.ActivityMainBinding;
 import edu.iut.proftracker.models.Professeur;
 import edu.iut.proftracker.models.ProfesseurAdapter;
 import edu.iut.proftracker.views.activitites.auth.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements PostExecuteActivity<Professeur>, Clickable {
-    private final String TAG = "AAAAAAAAAAAAAAAAAAAAAA";
-    private static final List<Professeur> professeurList = new ArrayList<>(); //the complete list
-    private final List<Professeur> displayedprofesseur = new ArrayList<>(); //the displayed list
+    private final String TAG = "MainActivity Tag";
+    private static final List<Professeur> listeProfesseur = new ArrayList<>();
+    private final List<Professeur> listeProfesseurAffiche = new ArrayList<>();
     private ProfesseurAdapter adapter;
-    private Intent professorIntent, loginIntent;
-    private FirebaseUser firebaseUser;
-    private Button buttonFrancais, buttonMathematiques, buttonHistoire, buttonInformatique;
-    private final boolean[] isActivatedButton = {false,false,false,false};
+    private Intent professeurIntent, loginIntent;
+    private FirebaseUser firebaseUtilisateur;
+    private Button buttonFrancais, boutonMathematiques, boutonHistoire, boutonInformatique;
+    private final boolean[] boutonActive = {false,false,false,false};
     private RangeSlider rangeSlider;
 
     @Override
@@ -54,14 +49,14 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         setContentView(R.layout.activity_main);
 
 
-        this.firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-        if(firebaseUser == null) {
+        this.firebaseUtilisateur = FirebaseAuth.getInstance().getCurrentUser();
+        if(firebaseUtilisateur == null) {
             this.loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(loginIntent);
         }
 
-        Button logoutButton = findViewById(R.id.logout);
-        logoutButton.setOnClickListener(
+        Button boutonDeconnexion = findViewById(R.id.logout);
+        boutonDeconnexion.setOnClickListener(
                 click -> {
                     FirebaseAuth.getInstance().signOut();
                     this.loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
@@ -81,11 +76,11 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 final int idnotification = R.id.notificationPage;
                 final int idProfile = R.id.profilePage;
 
-                final String ProfName = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+                final String nomProfesseur = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
 
                 Professeur professeurConnecte = null;
-                for (Professeur prof : professeurList) {
-                    if(prof.getNom().equals(ProfName)){
+                for (Professeur prof : listeProfesseur) {
+                    if(prof.getNom().equals(nomProfesseur)){
                         professeurConnecte = prof;
                     }
                 }
@@ -109,14 +104,14 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         Filtrer les professeurs par matières
          */
         buttonFrancais = findViewById(R.id.buttonFrancais);
-        buttonMathematiques = findViewById(R.id.buttonMathematiques);
-        buttonHistoire = findViewById(R.id.buttonHistoire);
-        buttonInformatique = findViewById(R.id.buttonInformatique);
+        boutonMathematiques = findViewById(R.id.buttonMathematiques);
+        boutonHistoire = findViewById(R.id.buttonHistoire);
+        boutonInformatique = findViewById(R.id.buttonInformatique);
 
         setButtonOnClickListener(buttonFrancais, "Français", 0);
-        setButtonOnClickListener(buttonMathematiques, "Mathématiques", 1);
-        setButtonOnClickListener(buttonHistoire, "Histoire", 2);
-        setButtonOnClickListener(buttonInformatique, "Informatique", 3);
+        setButtonOnClickListener(boutonMathematiques, "Mathématiques", 1);
+        setButtonOnClickListener(boutonHistoire, "Histoire", 2);
+        setButtonOnClickListener(boutonInformatique, "Informatique", 3);
 
         rangeSlider = findViewById(R.id.rangeSlider);
 
@@ -136,36 +131,36 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 String[] matieres = {"Français","Mathématiques","Histoire","Informatique"};
                 int compteur = 0;
                 boolean unBoutonActif = false;
-                for(boolean isActivated : isActivatedButton){
-                    if(isActivated){
+                for(boolean actif : boutonActive){
+                    if(actif){
                         unBoutonActif = true;
-                        filterProfesseursByMatiere(matieres[compteur]);
+                        filterProfesseursParMatiere(matieres[compteur]);
                         break;
                     }
                     compteur++;
                 }
                 if(!unBoutonActif){
-                    filterProfesseursReset();
+                    filterProfesseursReinitialiser();
                 }
             }
         });
     }
 
-    private void setButtonOnClickListener(Button button, String matiere, int indice) {
-        button.setOnClickListener(view -> {
-            if (!isActivatedButton[indice]) {
-                isActivatedButton[indice] = true;
-                filterProfesseursByMatiere(matiere);
+    private void setButtonOnClickListener(Button bouton, String matiere, int indice) {
+        bouton.setOnClickListener(view -> {
+            if (!boutonActive[indice]) {
+                boutonActive[indice] = true;
+                filterProfesseursParMatiere(matiere);
                 resetButtonsColors();
-                button.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                bouton.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
             } else {
-                isActivatedButton[indice] = false;
-                filterProfesseursReset();
+                boutonActive[indice] = false;
+                filterProfesseursReinitialiser();
                 resetButtonsColors();
             }
-            for(int i = 0; i < isActivatedButton.length; i++){
+            for(int i = 0; i < boutonActive.length; i++){
                 if(i != indice){
-                    isActivatedButton[i] = false;
+                    boutonActive[i] = false;
                 }
             }
         });
@@ -173,46 +168,46 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
     public void resetButtonsColors() {
         buttonFrancais.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
-        buttonMathematiques.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
-        buttonHistoire.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
-        buttonInformatique.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
+        boutonMathematiques.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
+        boutonHistoire.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
+        boutonInformatique.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
     }
 
     @Override
     public void onPostExecute(List<Professeur> itemList) {
-        professeurList.addAll(itemList);
-        displayedprofesseur.addAll(itemList);
-        adapter = new ProfesseurAdapter(displayedprofesseur, this);
+        listeProfesseur.addAll(itemList);
+        listeProfesseurAffiche.addAll(itemList);
+        adapter = new ProfesseurAdapter(listeProfesseurAffiche, this);
         ListView listview = findViewById(R.id.listeViewRecherche);
         listview.setAdapter(adapter);
         Log.d(TAG,"itemList = " + itemList);
     }
 
     // Filtrer les professeurs par matières
-    private void filterProfesseursByMatiere(String matiere) {
-        List<Professeur> filteredProfesseurs = new ArrayList<>();
-        for (Professeur professeur : professeurList) {
+    private void filterProfesseursParMatiere(String matiere) {
+        List<Professeur> listeProfesseurFlitre = new ArrayList<>();
+        for (Professeur professeur : listeProfesseur) {
             if (professeur.getMatieres().contains(matiere)
                     && rangeSlider.getValues().get(0) <= professeur.getPrixFloat()
                     && professeur.getPrixFloat() <= rangeSlider.getValues().get(1)) {
-                filteredProfesseurs.add(professeur);
+                listeProfesseurFlitre.add(professeur);
             }
         }
-        displayedprofesseur.clear();
-        displayedprofesseur.addAll(filteredProfesseurs);
+        listeProfesseurAffiche.clear();
+        listeProfesseurAffiche.addAll(listeProfesseurFlitre);
         adapter.notifyDataSetChanged();
     }
 
-    private void filterProfesseursReset(){
-        List<Professeur> filteredProfesseurs = new ArrayList<>();
-        for (Professeur professeur : professeurList) {
+    private void filterProfesseursReinitialiser(){
+        List<Professeur> listeProfesseurFlitre = new ArrayList<>();
+        for (Professeur professeur : listeProfesseur) {
             if (rangeSlider.getValues().get(0) <= professeur.getPrixFloat()
                     && professeur.getPrixFloat() <= rangeSlider.getValues().get(1)) {
-                filteredProfesseurs.add(professeur);
+                listeProfesseurFlitre.add(professeur);
             }
         }
-        displayedprofesseur.clear();
-        displayedprofesseur.addAll(filteredProfesseurs);
+        listeProfesseurAffiche.clear();
+        listeProfesseurAffiche.addAll(listeProfesseurFlitre);
         adapter.notifyDataSetChanged();
     }
 
@@ -222,18 +217,20 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     }
 
     @Override
-    public void onClicItem(int Index) {
-        int itemIndex = findIndexInList(Index);
+    public void onClicItem(int indice) {
+        int itemIndex = findIndexInList(indice); // Selection du proffesseur clické
         Log.d(TAG, String.valueOf(itemIndex));
+        // Création et ajout dans l'intent du professeur
         Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-        intent.putExtra(getString(R.string.key), professeurList.get(itemIndex));
+        intent.putExtra(getString(R.string.key), listeProfesseur.get(itemIndex));
+        // Lancement de la class ProfileActivity
         startActivity(intent);
     }
 
-    private int findIndexInList(int index) {
-        Professeur characterToFind = professeurList.get(index);
-        for (int i = 0; i < professeurList.size(); i++) {
-            if (professeurList.get(i).equals(characterToFind)) {
+    private int findIndexInList(int indice) {
+        Professeur professeurATrouve = listeProfesseur.get(indice);
+        for (int i = 0; i < listeProfesseur.size(); i++) {
+            if (listeProfesseur.get(i).equals(professeurATrouve)) {
                 return i;
             }
         }

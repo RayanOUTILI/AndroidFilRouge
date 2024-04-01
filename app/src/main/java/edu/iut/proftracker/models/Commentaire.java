@@ -114,7 +114,7 @@ public class Commentaire implements Parcelable {
 
     public float getNoteMoyenne(List<Commentaire> commentaires) {
         float note = 0;
-        for (Commentaire commentaire : commentaires) {
+        for (Commentaire commentaire : commentaires){
             note += commentaire.getNote();
         }
         return note / commentaires.size();

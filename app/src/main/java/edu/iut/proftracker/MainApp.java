@@ -18,11 +18,11 @@ public class MainApp extends Application {
         super.onCreate();
         context = getApplicationContext();
         FirebaseApp.initializeApp(context);
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-       if(currentUser != null) {
-           Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
-           startActivity(mainIntent);
-       }else {
+        FirebaseUser utilisateurActuel = FirebaseAuth.getInstance().getCurrentUser();
+        if(utilisateurActuel != null) {
+            Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(mainIntent);
+        }else {
             Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(loginIntent);
         }
