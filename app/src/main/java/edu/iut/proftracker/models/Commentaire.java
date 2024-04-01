@@ -55,14 +55,14 @@ public class Commentaire implements Parcelable {
         this.contenu = contenu;
     }
 
-    public float getNote() {
+    public float getNote(){
         return note;
     }
 
     // on calcule la note moyenne du professeur
     public float getNoteMoyenne(List<Commentaire> commentaires) {
         float note = 0;
-        for (Commentaire commentaire : commentaires) {
+        for (Commentaire commentaire : commentaires){
             note += commentaire.getNote();
         }
         return note / commentaires.size();
