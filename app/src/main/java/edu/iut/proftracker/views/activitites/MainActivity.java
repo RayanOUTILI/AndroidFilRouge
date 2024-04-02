@@ -245,6 +245,8 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      */
     @Override
     public void onPostExecute(List<Professeur> itemList) {
+        listeProfesseur.clear();
+        listeProfesseurAffiche.clear();
         listeProfesseur.addAll(itemList);
         listeProfesseurAffiche.addAll(itemList);
         adapter = new ProfesseurAdapter(listeProfesseurAffiche, this);
