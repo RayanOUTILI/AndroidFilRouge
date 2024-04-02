@@ -150,13 +150,13 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         buttonFrancais = findViewById(R.id.buttonFrancais);
         boutonMathematiques = findViewById(R.id.buttonMathematiques);
         boutonPhysique = findViewById(R.id.buttonPhysique);
-        buttonPhilosophie = findViewById(R.id.buttonPhilosophie);
+        boutonPhilosophie = findViewById(R.id.buttonPhilosophie);
 
         // Appel de la méthode setButtonOnClickListener pour chaque bouton
         setButtonOnClickListener(buttonFrancais, "Français", 0);
         setButtonOnClickListener(boutonMathematiques, "Mathématiques", 1);
         setButtonOnClickListener(boutonPhysique, "Physique", 2);
-        setButtonOnClickListener(buttonPhilosophie, "Philosophie", 3);
+        setButtonOnClickListener(boutonPhilosophie, "Philosophie", 3);
 
         // Mise en place du slider pour filtrer les professeurs par prix
         rangeSlider = findViewById(R.id.rangeSlider);
