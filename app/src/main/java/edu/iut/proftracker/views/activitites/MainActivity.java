@@ -323,11 +323,10 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
      */
     @Override
     public void onClicItem(int indice) {
-        int itemIndex = listeProfesseurAffiche.indexOf(listeProfesseur.get(indice)); // Récupération de l'index de l'item cliqué
-        Log.d(TAG, String.valueOf(itemIndex));
+        Log.d(TAG, String.valueOf(indice));
         // Création et ajout dans l'intent du professeur
         Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-        intent.putExtra(getString(R.string.key), listeProfesseur.get(itemIndex));
+        intent.putExtra(getString(R.string.key), listeProfesseurAffiche.get(indice));
         // Lancement de la class ProfileActivity
         startActivity(intent);
     }
