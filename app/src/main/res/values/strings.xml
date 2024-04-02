@@ -39,8 +39,8 @@
     <string name="filtres">Filtres :</string>
     <string name="fran_ais">Français</string>
     <string name="math_matiques">Mathématiques</string>
-    <string name="histoire">Histoire</string>
-    <string name="informatique">Informatique</string>
+    <string name="physique">Physique</string>
+    <string name="philosophie">Philosophie</string>
     <string name="notifications_1">Notifications (1)</string>
     <string name="a_comment">a commenté :</string>
     <string name="souhaite_avoir_un_cours_de">Souhaite avoir un cours de</string>

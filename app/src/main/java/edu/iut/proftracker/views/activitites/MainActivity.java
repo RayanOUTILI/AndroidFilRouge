@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     private ProfesseurAdapter adapter;
     private Intent professeurIntent, loginIntent;
     private FirebaseUser firebaseUtilisateur;
-    private Button buttonFrancais, boutonMathematiques, boutonHistoire, boutonInformatique;
+    private Button buttonFrancais, boutonMathematiques, boutonPhysique, boutonPhilosophie;
     private final boolean[] boutonActive = {false,false,false,false};
     private RangeSlider rangeSlider;
 
@@ -149,14 +149,14 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
          */
         buttonFrancais = findViewById(R.id.buttonFrancais);
         boutonMathematiques = findViewById(R.id.buttonMathematiques);
-        boutonHistoire = findViewById(R.id.buttonHistoire);
-        boutonInformatique = findViewById(R.id.buttonInformatique);
+        boutonPhysique = findViewById(R.id.buttonPhysique);
+        buttonPhilosophie = findViewById(R.id.buttonPhilosophie);
 
         // Appel de la méthode setButtonOnClickListener pour chaque bouton
         setButtonOnClickListener(buttonFrancais, "Français", 0);
         setButtonOnClickListener(boutonMathematiques, "Mathématiques", 1);
-        setButtonOnClickListener(boutonHistoire, "Histoire", 2);
-        setButtonOnClickListener(boutonInformatique, "Informatique", 3);
+        setButtonOnClickListener(boutonPhysique, "Physique", 2);
+        setButtonOnClickListener(buttonPhilosophie, "Philosophie", 3);
 
         // Mise en place du slider pour filtrer les professeurs par prix
         rangeSlider = findViewById(R.id.rangeSlider);
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
         rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override
             public void onValueChange(RangeSlider slider, float value, boolean fromUser) {
-                String[] matieres = {"Français","Mathématiques","Histoire","Informatique"};
+                String[] matieres = {"Français","Mathématiques","Physique","Philosophie"};
                 int compteur = 0;
                 boolean unBoutonActif = false;
                 for(boolean actif : boutonActive){
@@ -227,8 +227,8 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
     public void resetButtonsColors() {
         buttonFrancais.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
         boutonMathematiques.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
-        boutonHistoire.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
-        boutonInformatique.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
+        boutonPhysique.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
+        boutonPhilosophie.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#005072")));
     }
 
     /** Méthode onPostExecute permettant de récupérer les professeurs de l'application
