@@ -23,6 +23,8 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     android:id="@+id/profilepicture"
+                    android:scaleType="centerCrop"
+                    android:adjustViewBounds="true"
                     android:contentDescription="@string/profile_picture"
                     android:background="@color/cardview_dark_background"
                     />
@@ -65,44 +67,48 @@
                     android:layout_height="60sp"
                     android:layout_marginTop="10dp"
                     android:text="@string/exemple2"
-                    android:textSize="40sp"
+                    android:textSize="30sp"
                     app:layout_constraintStart_toStartOf="@id/logoposition"
                     app:layout_constraintTop_toBottomOf="@id/logoposition" />
 
                 <TextView
                     android:id="@+id/permiereMatiere"
-                    android:layout_width="100dp"
-                    android:layout_height="20dp"
-                    android:layout_marginTop="10dp"
                     style="@style/TextAppearance.Material3.BodyLarge"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp"
                     android:textAlignment="center"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/deuxiemeMatiere"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/nomProfile"
-                    app:layout_constraintEnd_toStartOf="@id/deuxiemeMatiere" />
+                    app:layout_constraintTop_toBottomOf="@+id/nomProfile" />
 
                 <ImageView
                     android:id="@+id/imageView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:background="@drawable/livre_ouvert_fill"
+                    android:contentDescription="@string/book"
+                    app:layout_constraintBottom_toBottomOf="@+id/deuxiemeMatiere"
                     app:layout_constraintEnd_toStartOf="@+id/deuxiemeMatiere"
                     app:layout_constraintStart_toEndOf="@+id/permiereMatiere"
-                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere"
-                    android:contentDescription="@string/book" />
+                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere" />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:background="@drawable/livre_ouvert_fill"
+                    android:contentDescription="@string/book"
+                    app:layout_constraintBottom_toBottomOf="@+id/troisiemeMatiere"
                     app:layout_constraintEnd_toStartOf="@+id/troisiemeMatiere"
                     app:layout_constraintStart_toEndOf="@+id/deuxiemeMatiere"
-                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere"
-                    android:contentDescription="@string/book" />
+                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere" />
 
                 <TextView
                     android:id="@+id/deuxiemeMatiere"
                     android:layout_width="100dp"
-                    android:layout_height="20dp"
+                    android:layout_height="30dp"
+                    android:textSize="14sp"
                     style="@style/TextAppearance.Material3.BodyLarge"
                     app:layout_constraintStart_toEndOf="@+id/permiereMatiere"
                     app:layout_constraintEnd_toStartOf="@id/troisiemeMatiere"
@@ -114,7 +120,8 @@
                 <TextView
                     android:id="@+id/troisiemeMatiere"
                     android:layout_width="100dp"
-                    android:layout_height="20dp"
+                    android:layout_height="30dp"
+                    android:textSize="14sp"
                     style="@style/TextAppearance.Material3.BodyLarge"
                     app:layout_constraintEnd_toEndOf="parent"
                     android:textAlignment="center"

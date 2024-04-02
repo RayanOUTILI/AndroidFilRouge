@@ -139,7 +139,7 @@ public class Professeur implements Parcelable {
      * @see java.lang.String
      */
     public void setImage(String image) {
-        this.image = "https://rayanoutili.github.io/proftrackerjson/images/" + image;
+        this.image = "https://rayanoutili.github.io/proftrackerjson/images/profconnus/" + image;
     }
 
     /** Méthode permettant de récupérer le lieu où le professeur donne ses cours

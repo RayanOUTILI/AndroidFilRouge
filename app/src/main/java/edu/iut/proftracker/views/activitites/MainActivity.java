@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
 
 
         // Récupération des professeurs de l'application depuis le fichier JSON situé sur le serveur
-        String url = "https://rayanoutili.github.io/proftrackerjson/data2.json";
+        String url = "https://rayanoutili.github.io/proftrackerjson/data3.json";
         // Appel de la classe HttpAsyncGet pour récupérer les professeurs dans l'
         new HttpAsyncGet<>(url, Professeur.class, this, new ProgressDialog(MainActivity.this) );
 
