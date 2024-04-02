@@ -15,7 +15,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -44,7 +44,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/profilepicture"
                     android:layout_marginTop="10dp"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginStart="30dp"
                     android:id="@+id/logoposition"
                     android:contentDescription="@string/position"
                     android:background="@drawable/placeholder"
@@ -55,7 +55,7 @@
                     android:layout_height="20sp"
                     app:layout_constraintTop_toTopOf="@id/logoposition"
                     app:layout_constraintStart_toEndOf="@id/logoposition"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginStart="10dp"
                     android:text="@string/exemple1"
                     />
 
@@ -87,7 +87,8 @@
                     android:background="@drawable/livre_ouvert_fill"
                     app:layout_constraintEnd_toStartOf="@+id/deuxiemeMatiere"
                     app:layout_constraintStart_toEndOf="@+id/permiereMatiere"
-                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere" />
+                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere"
+                    android:contentDescription="@string/book" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -95,7 +96,8 @@
                     android:background="@drawable/livre_ouvert_fill"
                     app:layout_constraintEnd_toStartOf="@+id/troisiemeMatiere"
                     app:layout_constraintStart_toEndOf="@+id/deuxiemeMatiere"
-                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere" />
+                    app:layout_constraintTop_toTopOf="@+id/deuxiemeMatiere"
+                    android:contentDescription="@string/book" />
 
                 <TextView
                     android:id="@+id/deuxiemeMatiere"

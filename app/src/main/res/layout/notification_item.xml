@@ -11,13 +11,13 @@
         android:layout_gravity="center_vertical"
         android:layout_marginEnd="16dp"
         android:background="@drawable/logo"
-        />
+        android:contentDescription="@string/imageprofile" />
 
     <TextView
         android:id="@+id/text_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Souhaite avoir un cours de"
+        android:text="@string/souhaite_avoir_un_cours_de"
         android:textSize="16sp"
         android:textColor="@android:color/black"
         android:layout_gravity="center_vertical"/>

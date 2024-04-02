@@ -1,6 +1,5 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Se déconnecter"
+        android:text="@string/se_d_connecter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:text="Filtres : "
+        android:text="@string/filtres"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo" />
@@ -90,17 +89,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/buttonColor"
-                android:text="Français"
-                />
+                android:text="@string/fran_ais"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonMathematiques"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:textColor="@color/white"
                 android:backgroundTint="@color/buttonColor"
-                android:text="Mathématiques" />
+                android:text="@string/math_matiques"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonHistoire"
@@ -108,7 +110,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:backgroundTint="@color/buttonColor"
-                android:text="Histoire" />
+                android:text="@string/histoire"
+                android:textColor="@color/white"
+                style="?android:attr/buttonBarButtonStyle" />
 
             <Button
                 android:id="@+id/buttonInformatique"
@@ -116,7 +120,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:backgroundTint="@color/buttonColor"
-                android:text="Informatique" />
+                android:text="@string/informatique"
+                android:textColor="@color/white"
+                style="?android:attr/buttonBarButtonStyle" />
         </LinearLayout>
     </HorizontalScrollView>
 

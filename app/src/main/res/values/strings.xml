@@ -28,4 +28,21 @@
     <string name="noteetoile">"Note moyenne : ⭐ "</string>
     <string name="background">BACKGROUND</string>
     <string name="mati_res_enseign_es">Matières enseignées</string>
+    <string name="mot_de_passe_oublie">Mot de passe oublié</string>
+    <string name="veuillez_saisir_l_adresse_email_associ_e_votre_compte_pour_recevoir_un_lien_de_r_initialisation_de_mot_de_passe">Veuillez saisir l\'adresse email associée à votre compte pour recevoir un lien de réinitialisation de mot de passe.</string>
+    <string name="email">Email</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="retour_la_connexion">Retour à la connexion</string>
+    <string name="image_bibliotheque">Image Bibliotheque</string>
+    <string name="book">book</string>
+    <string name="se_d_connecter">Se déconnecter</string>
+    <string name="filtres">Filtres :</string>
+    <string name="fran_ais">Français</string>
+    <string name="math_matiques">Mathématiques</string>
+    <string name="histoire">Histoire</string>
+    <string name="informatique">Informatique</string>
+    <string name="notifications_1">Notifications (1)</string>
+    <string name="a_comment">a commenté :</string>
+    <string name="souhaite_avoir_un_cours_de">Souhaite avoir un cours de</string>
+    <string name="imageprofile">imageProfile</string>
 </resources>
