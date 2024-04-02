@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".views.activitites.ProfileActivity">
 
         <ScrollView
@@ -64,9 +65,13 @@
                 <TextView
                     android:id="@+id/nomProfile"
                     android:layout_width="350sp"
-                    android:layout_height="60sp"
+                    android:layout_height="40sp"
                     android:layout_marginTop="10dp"
                     android:text="@string/exemple2"
+                    android:background="@drawable/border_radius_nom"
+                    android:textColor="@color/white"
+                    android:textAlignment="center"
+                    android:justificationMode="inter_word"
                     android:textSize="30sp"
                     app:layout_constraintStart_toStartOf="@id/logoposition"
                     app:layout_constraintTop_toBottomOf="@id/logoposition" />
