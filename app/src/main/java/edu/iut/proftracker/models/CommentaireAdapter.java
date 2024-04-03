@@ -95,7 +95,7 @@ public class CommentaireAdapter extends BaseAdapter {
 
         //(3) : Mise à jour des valeurs
         String message = "Note : " + items.get(position).getNote() + "\n" + items.get(position).getAuteur() + " a commenté : " + items.get(position).getContenu();
-        float noteMsg = items.get(position).getNote();
+        float noteMsg = items.get(position).getNoteMoyenne(items);
         note.setText("Note moyenne : " + noteMsg + " ⭐");
         name.setText(message);
 
