@@ -131,12 +131,12 @@ public class MainActivity extends AppCompatActivity implements PostExecuteActivi
                 }
                 if(idnotification == id){
                     Intent intent = new Intent(MainActivity.this, NotificationActivity.class);
-                    intent.putExtra("key",1);
+                    intent.putExtra(getString(R.string.key),1);
                     startActivity(intent);
                 } else if(id == idProfile){
                     Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                    intent.putExtra("key",professeurConnecte);
-                    intent.putExtra("estLui", true);
+                    intent.putExtra(getString(R.string.key),professeurConnecte);
+                    intent.putExtra(getString(R.string.est_lui), true);
                     startActivity(intent);
                 } else{
                     System.out.println("DKNOW");

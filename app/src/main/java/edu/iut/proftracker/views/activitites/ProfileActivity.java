@@ -60,7 +60,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         // Recupération du professeur depuis l'intent
         Professeur professeur = getIntent().getExtras().getParcelable(getString(R.string.key));
-        boolean estLui = getIntent().getExtras().getBoolean("estLui");
+        boolean estLui = getIntent().getExtras().getBoolean(getString(R.string.est_lui));
 
         // Initialisation des éléments de l'activité
         if (professeur == null) {
